@@ -116,3 +116,12 @@ def updateCreditInfo(creditID=None,data=None):
     ''' %(data['name'], data['quantity'], data['amount'], data['interest'], data['date'], data['attendee'], creditID))
 
     database.commit()
+
+
+def deleteCredit(creditID=None):
+    cursor.execute('''
+    DELETE FROM credits WHERE id=%d
+    '''% creditID)
+
+    database.commit()
+

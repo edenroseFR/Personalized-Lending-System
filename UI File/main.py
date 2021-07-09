@@ -65,6 +65,7 @@ class BalanceSheet(QtWidgets.QMainWindow):
     def configureWidgets(self):
         self.home.clicked.connect(self.homeClicked)
         self.addButton.clicked.connect(self.addButtonClicked)
+        self.deleteButton.clicked.connect(self.deleteButtonClicked)
         self.name.setText(self.lendee)
         self.purok.setText(self.lendee_address)
         self.tableWidget.itemDoubleClicked.connect(self.doubleClicked)
@@ -75,6 +76,7 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.newWin.show()
 
     def fillTable(self, ID):
+        self.tableWidget.setRowCount(0)
         row = 0
         self.activities = database.creditorHistory(ID)
         self.tableWidget.setRowCount(len(self.activities))
@@ -97,6 +99,13 @@ class BalanceSheet(QtWidgets.QMainWindow):
     def addButtonClicked(self):
         self.newWin = EditBalance(self, self.lendee, self.id)
         self.newWin.show()
+
+    def deleteButtonClicked(self):
+        if messagebox.confirmDelete(self):
+            creditID = self.tableWidget.item(self.tableWidget.currentRow(),0).text()
+            database.deleteCredit(int(creditID))
+
+        self.fillTable(self.id)
 
 
 

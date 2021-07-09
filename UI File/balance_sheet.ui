@@ -229,7 +229,7 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="subtractButton">
+   <widget class="QPushButton" name="deleteButton">
     <property name="geometry">
      <rect>
       <x>385</x>
@@ -252,7 +252,7 @@ font: 24pt &quot;MS Shell Dlg 2&quot;;
    <zorder>scrollArea</zorder>
    <zorder>bg</zorder>
    <zorder>addButton</zorder>
-   <zorder>subtractButton</zorder>
+   <zorder>deleteButton</zorder>
   </widget>
  </widget>
  <resources/>
