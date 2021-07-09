@@ -191,19 +191,31 @@ class BorrowersTable(QtWidgets.QMainWindow):
         self.configureWidgets()
 
     def configureWidgets(self):
-        # putting all creditors to the table
         self.fillTable()
 
-        # signals
         self.home.clicked.connect(self.homeClicked)
 
     def fillTable(self):
-        self.tableWidget.setRowCount(len(database.allCreditors()))
+        self.tableWidget.setRowCount(0)
+        self.data = database.creditors_balance()
+        self.tableWidget.setRowCount(database.allCreditors())
+
+        row = 0
+        for i in self.data:
+            self.tableWidget.setItem(row, 0, QTableWidgetItem(str(i[0])))
+            self.tableWidget.setItem(row, 1, QTableWidgetItem(str(i[1])))
+            self.tableWidget.setItem(row, 2, QTableWidgetItem(str(i[2])))
+
+            row += 1
+
+
+
 
     def homeClicked(self):
         self.newWin = MainWindow()
         self.newWin.show()
         self.close()
+
 
 
 app = QApplication(sys.argv)

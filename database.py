@@ -125,3 +125,26 @@ def deleteCredit(creditID=None):
 
     database.commit()
 
+
+def creditors_balance():
+    cursor.execute('''
+    SELECT c.first_name, c.last_name,
+    trim(sum(b.price_or_amount+(b.price_or_amount*(b.interest/100))))+0 as balance,
+    c.purok 
+    FROM creditors c
+    JOIN credits b
+    ON c.id = b.creditor_id
+    GROUP BY c.id
+    ''')
+
+    res = cursor.fetchall()
+    res = [[i[0] + ' ' + i[1], i[2], i[3]] for i in res]
+    return res
+
+def allCreditors():
+    cursor.execute('''
+    SELECT id FROM creditors
+    ''')
+
+    return len(cursor.fetchall())
+
