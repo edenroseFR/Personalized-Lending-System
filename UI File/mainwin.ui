@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>762</width>
+    <height>501</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Lending Company</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="bg" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-10</y>
+      <width>771</width>
+      <height>521</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bg{
+background-color: #fc5404;
+}</string>
+    </property>
+    <widget class="QPushButton" name="paymentButton">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>260</y>
+       <width>71</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#paymentButton{
+color: white;
+background-color: #f9b208;
+border: 1px solid white;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/payments.png</normaloff>../img/payments.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>45</width>
+       <height>45</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="creditorsButton">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>260</y>
+       <width>71</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#creditorsButton{
+color: white;
+background-color: #f9b208;
+border: 1px solid white;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/user.png</normaloff>../img/user.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="default">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="collectibleButton">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>260</y>
+       <width>71</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#collectibleButton{
+color: white;
+background-color: #f9b208;
+border: 1px solid white;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/collectible.png</normaloff>../img/collectible.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>45</width>
+       <height>45</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>70</y>
+       <width>761</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="statusTip">
+      <string>lending corporation</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#label {
+color: white;
+font: 25 46pt &quot;Bodoni MT Poster Compressed&quot;;
+}</string>
+     </property>
+     <property name="text">
+      <string>Lending Co.</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>200</y>
+       <width>451</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#widget{
+background-color: white;
+border: 1px white;
+border-radius: 20px;
+}</string>
+     </property>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>5</y>
+        <width>341</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#lineEdit{
+border: 1px white;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Search borrower</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="clearButton">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>10</y>
+        <width>21</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#clearButton{
+color: blue;
+font: 10pt &quot;Segoe UI&quot;;
+border: TRANSPARENT;
+}</string>
+      </property>
+      <property name="text">
+       <string>X</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>383</x>
+        <y>10</y>
+        <width>20</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="searchButton">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>10</y>
+        <width>41</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../img/search-icon.png</normaloff>../img/search-icon.png</iconset>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <zorder>line</zorder>
+     <zorder>searchButton</zorder>
+     <zorder>lineEdit</zorder>
+     <zorder>clearButton</zorder>
+    </widget>
+    <widget class="QLabel" name="borrowerLabel">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>340</y>
+       <width>71</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#borrowerLabel{
+color: white;
+font: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Borrowers</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="collectibleLabel">
+     <property name="geometry">
+      <rect>
+       <x>340</x>
+       <y>340</y>
+       <width>71</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#collectibleLabel{
+color: white;
+font: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Collectibles</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="paymentLabel">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>340</y>
+       <width>71</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#paymentLabel{
+color: white;
+font: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Payments</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="duetodayLabel">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>460</y>
+       <width>71</width>
+       <height>13</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#duetodayLabel{
+color: white;
+font: 12px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Due Today</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="duetodayButton">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>380</y>
+       <width>71</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#duetodayButton{
+color: white;
+background-color: #f9b208;
+border: 1px solid white;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/due today.png</normaloff>../img/due today.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="addNewUser">
+     <property name="geometry">
+      <rect>
+       <x>600</x>
+       <y>60</y>
+       <width>51</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#addNewUser{
+background-color: white;
+border: 1px solid white;
+border-radius: 25;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/add new.png</normaloff>../img/add new.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="listWidget">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>250</y>
+       <width>451</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <property name="inputMethodHints">
+      <set>Qt::ImhNone</set>
+     </property>
+    </widget>
+    <zorder>paymentButton</zorder>
+    <zorder>creditorsButton</zorder>
+    <zorder>collectibleButton</zorder>
+    <zorder>label</zorder>
+    <zorder>borrowerLabel</zorder>
+    <zorder>collectibleLabel</zorder>
+    <zorder>paymentLabel</zorder>
+    <zorder>duetodayLabel</zorder>
+    <zorder>duetodayButton</zorder>
+    <zorder>widget</zorder>
+    <zorder>addNewUser</zorder>
+    <zorder>listWidget</zorder>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>clearButton</sender>
+   <signal>clicked()</signal>
+   <receiver>lineEdit</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>533</x>
+     <y>210</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>437</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearButton</sender>
+   <signal>clicked()</signal>
+   <receiver>listWidget</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>538</x>
+     <y>201</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>368</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

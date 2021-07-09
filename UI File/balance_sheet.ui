@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>768</width>
+    <height>503</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="bg" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>771</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bg{
+background-color: #fc5404;
+}</string>
+    </property>
+    <widget class="QLabel" name="name">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>10</y>
+       <width>271</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#name{
+font: 13pt &quot;Century Gothic&quot;;
+font-weight: bold;
+color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string>Eden Rose Risma</string>
+     </property>
+     <property name="scaledContents">
+      <bool>false</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="purok">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>70</y>
+       <width>191</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#contact {
+color: white;
+}</string>
+     </property>
+     <property name="text">
+      <string>Tagmalinao</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="balance">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>20</y>
+       <width>361</width>
+       <height>81</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#balance{
+color: white;
+font: 44pt &quot;MS Shell Dlg 2&quot;;
+}</string>
+     </property>
+     <property name="text">
+      <string>12,000.00</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/philippine-peso.png</normaloff>../img/philippine-peso.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>30</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="home">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>75</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#home{
+color: white;
+font: 25 15pt &quot;Bodoni MT Poster Compressed&quot;;
+border: 1px solid white;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Lending Co.</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>139</y>
+      <width>771</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>769</width>
+       <height>369</height>
+      </rect>
+     </property>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>771</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectRows</enum>
+      </property>
+      <property name="verticalScrollMode">
+       <enum>QAbstractItemView::ScrollPerPixel</enum>
+      </property>
+      <property name="horizontalScrollMode">
+       <enum>QAbstractItemView::ScrollPerPixel</enum>
+      </property>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ITEM</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>+/-</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>AMOUNT</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>DATE</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>ATENDEE</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>110</y>
+      <width>385</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#addButton{
+background-color: rgb(85, 255, 127);
+font: 20pt &quot;MS Shell Dlg 2&quot;;
+}</string>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="subtractButton">
+    <property name="geometry">
+     <rect>
+      <x>385</x>
+      <y>110</y>
+      <width>385</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#subtractButton{
+background-color: rgb(170, 0, 0);
+color: white;
+font: 24pt &quot;MS Shell Dlg 2&quot;;
+}</string>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <zorder>scrollArea</zorder>
+   <zorder>bg</zorder>
+   <zorder>addButton</zorder>
+   <zorder>subtractButton</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

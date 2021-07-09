@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>764</width>
+    <height>504</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Borrowers</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="bg" native="true">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>-10</y>
+      <width>800</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bg{
+background-color: white;
+border: 1px solid white;
+border-radius: 90px;
+}</string>
+    </property>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>100</y>
+       <width>541</width>
+       <height>391</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#scrollArea{
+border: 1px solid white;
+
+}</string>
+     </property>
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>539</width>
+        <height>389</height>
+       </rect>
+      </property>
+      <widget class="QTableWidget" name="tableWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>541</width>
+         <height>391</height>
+        </rect>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::NoFrame</enum>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SingleSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <property name="horizontalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <property name="showGrid">
+        <bool>true</bool>
+       </property>
+       <property name="gridStyle">
+        <enum>Qt::SolidLine</enum>
+       </property>
+       <property name="sortingEnabled">
+        <bool>false</bool>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="cornerButtonEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="rowCount">
+        <number>12</number>
+       </property>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="verticalHeaderStretchLastSection">
+        <bool>false</bool>
+       </attribute>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <row/>
+       <column>
+        <property name="text">
+         <string>NAME</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>BALANCE</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>ADDRESS</string>
+        </property>
+       </column>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QLabel" name="borrowersLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>111</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#borrowersLabel{
+color: #fc5404;
+	font: 75 22pt  &quot;Bodoni MT Poster Compressed&quot;;
+}</string>
+     </property>
+     <property name="text">
+      <string>Borrowers</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>40</y>
+       <width>451</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#widget{
+background-color: white;
+border: 1px solid black;
+border-radius: 20px;
+}</string>
+     </property>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>5</y>
+        <width>341</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#lineEdit{
+border: 1px white;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>Search borrower</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="clearButton">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>10</y>
+        <width>21</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#clearButton{
+color: blue;
+font: 10pt &quot;Segoe UI&quot;;
+border: TRANSPARENT;
+}</string>
+      </property>
+      <property name="text">
+       <string>X</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>383</x>
+        <y>10</y>
+        <width>20</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="searchButton">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>10</y>
+        <width>41</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../img/search-icon.png</normaloff>../img/search-icon.png</iconset>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <zorder>line</zorder>
+     <zorder>searchButton</zorder>
+     <zorder>lineEdit</zorder>
+     <zorder>clearButton</zorder>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="bg2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>211</width>
+      <height>521</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#bg2{
+background-color: #fc5404;
+}</string>
+    </property>
+    <widget class="QPushButton" name="editButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>130</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#editButton{
+color: white;
+background-color: #f9b208;
+border: 1px solid white;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Edit</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/edit.svg</normaloff>../img/edit.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="deleteButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>160</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#deleteButton{
+color: white;
+background-color: #f9b208;
+border: 1px solid white;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Delete</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/delete.svg</normaloff>../img/delete.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="sortButton">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>190</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#sortButton{
+color: white;
+background-color: #f9b208;
+border: 1px solid white;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Sort</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/delete.svg</normaloff>../img/delete.svg</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="home">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>101</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#home{
+color: white;
+font: 25 25pt &quot;Bodoni MT Poster Compressed&quot;;
+border: TRANSPARENT;
+border-radius: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Lending Co.</string>
+     </property>
+    </widget>
+   </widget>
+   <zorder>bg2</zorder>
+   <zorder>bg</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

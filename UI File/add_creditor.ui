@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>342</width>
+    <height>519</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>351</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="Borrower">
+     <attribute name="title">
+      <string>Borrower</string>
+     </attribute>
+     <widget class="QWidget" name="rect1_3" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>180</y>
+        <width>281</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#rect1_3{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+      </property>
+      <widget class="QLineEdit" name="last_name">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>5</y>
+         <width>261</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#last_name{
+border: 1px solid white;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Last Name</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="rect1_5" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>270</y>
+        <width>281</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#rect1_5{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+      </property>
+      <widget class="QLineEdit" name="barangay">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>5</y>
+         <width>261</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#barangay{
+border: 1px solid white;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Barangay</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="rect1_4" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>230</y>
+        <width>281</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#rect1_4{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+      </property>
+      <widget class="QLineEdit" name="purok">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>5</y>
+         <width>261</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#purok{
+border: 1px solid white;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Purok</string>
+       </property>
+       <property name="cursorMoveStyle">
+        <enum>Qt::LogicalMoveStyle</enum>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>30</y>
+        <width>231</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#label{
+color: black;
+font: 25 26pt &quot;Bodoni MT Poster Compressed&quot;;
+}</string>
+      </property>
+      <property name="text">
+       <string>Borrower</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+     <widget class="QWidget" name="rect1" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>100</y>
+        <width>281</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#rect1{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+      </property>
+      <widget class="QLineEdit" name="first_name">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>5</y>
+         <width>261</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#first_name{
+border: 1px solid white;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>First Name</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="rect1_6" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>310</y>
+        <width>281</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#rect1_6{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+      </property>
+      <widget class="QLineEdit" name="municipality">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>5</y>
+         <width>261</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#municipality{
+border: 1px solid white;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Municipality</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="rect1_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>140</y>
+        <width>281</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#rect1_2{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+      </property>
+      <widget class="QLineEdit" name="middle_name">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>5</y>
+         <width>261</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#middle_name{
+border: 1px solid white;
+}</string>
+       </property>
+       <property name="placeholderText">
+        <string>Middle Name</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Cash">
+     <attribute name="title">
+      <string>Cash</string>
+     </attribute>
+     <widget class="QSpinBox" name="amount">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>80</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="suffix">
+       <string>.00</string>
+      </property>
+      <property name="prefix">
+       <string>P</string>
+      </property>
+      <property name="maximum">
+       <number>1000000000</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>60</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Amount</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="interest">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>80</y>
+        <width>101</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="suffix">
+       <string>%</string>
+      </property>
+      <property name="prefix">
+       <string/>
+      </property>
+      <property name="maximum">
+       <number>100</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>60</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Interest</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Item">
+     <attribute name="title">
+      <string>Item</string>
+     </attribute>
+     <widget class="QLineEdit" name="itemName">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>311</width>
+        <height>41</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="quantity">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>130</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>1</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Quantity</string>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="price">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>130</y>
+        <width>111</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="suffix">
+       <string>.00</string>
+      </property>
+      <property name="prefix">
+       <string>P</string>
+      </property>
+      <property name="maximum">
+       <number>10000000</number>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>110</y>
+        <width>47</width>
+        <height>13</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Price</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QDateEdit" name="date">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>410</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>470</y>
+      <width>301</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Record</string>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>100</number>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="attendee">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>411</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>390</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Attendee</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
