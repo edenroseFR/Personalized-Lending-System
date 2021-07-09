@@ -2,6 +2,7 @@ import sys
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 from PyQt5.uic import loadUi
+from editBalance import EditBalance
 import database
 import messagebox
 import re
@@ -69,8 +70,8 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.tableWidget.itemDoubleClicked.connect(self.doubleClicked)
 
     def doubleClicked(self):
-        self.tableWidget.item(self.tableWidget.currentRow(), 2).text()
-        self.newWin = ChooseAction(self)
+        id = self.tableWidget.item(self.tableWidget.currentRow(),0).text()
+        self.newWin = self.newWin = EditBalance(parent=self, creditorID=self.id, creditID=id, mode='e')
         self.newWin.show()
 
     def fillTable(self, ID):
@@ -96,34 +97,6 @@ class BalanceSheet(QtWidgets.QMainWindow):
     def addButtonClicked(self):
         self.newWin = EditBalance(self, self.lendee, self.id)
         self.newWin.show()
-
-
-
-class ChooseAction(QtWidgets.QMainWindow):
-    def __init__(self, parent=None):
-        super(ChooseAction,self).__init__(parent)
-        loadUi('choose_action.ui', self)
-        self.configureWidgets()
-
-    def configureWidgets(self):
-        self.editButton.clicked.connect(self.editButtonClicked)
-
-    def editButtonClicked(self):
-        print('clicked')
-
-
-class EditBalance(QtWidgets.QMainWindow):
-    def __init__(self, parent=None, name = None, creditorID=None):
-        super(EditBalance,self).__init__(parent)
-        loadUi('add_or_subtract.ui',self)
-        self.p = parent
-        self.creditorName = name
-        self.creditorID = creditorID
-        self.configureWidgets()
-
-    def configureWidgets(self):
-        self.attendee.addItems(database.getAttendees())
-        self.pushButton.clicked.connect(self.pushButtonClicked)
 
 
 

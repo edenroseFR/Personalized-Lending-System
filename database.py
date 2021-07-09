@@ -96,6 +96,23 @@ def creditorHistory(ID=None):
 
 
 
-def allCreditors():
-    pass
-    #cursor.execute('SELECT first_name, middle_name, last_name, ')
+def getCreditInformation(creditID=None):
+    cursor.execute('''
+    select c.name, c.quantity, c.price_or_amount, c.interest, c.date, a.full_name FROM credits c
+    JOIN attendees a
+    ON c.attendee_id = a.id
+    WHERE c.id = %d
+    ''' %creditID)
+
+    name, quantity, amount, interest, date, attendee= cursor.fetchone()
+    return {'name':name,'quantity':quantity,'amount':amount,'interest':interest,'date':date,'attendee':attendee}
+
+
+def updateCreditInfo(creditID=None,data=None):
+    cursor.execute('''
+    UPDATE credits
+    SET name='%s', quantity=%d, price_or_amount=%d, interest=%d, date='%s', attendee_id=%d
+    WHERE id=%d
+    ''' %(data['name'], data['quantity'], data['amount'], data['interest'], data['date'], data['attendee'], creditID))
+
+    database.commit()
