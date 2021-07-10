@@ -229,7 +229,7 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;
      <string>+</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="deleteButton">
+   <widget class="QPushButton" name="paymentButton">
     <property name="geometry">
      <rect>
       <x>385</x>
@@ -239,20 +239,20 @@ font: 20pt &quot;MS Shell Dlg 2&quot;;
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">#subtractButton{
+     <string notr="true">#paymentButton{
 background-color: rgb(170, 0, 0);
 color: white;
-font: 24pt &quot;MS Shell Dlg 2&quot;;
+font: 14pt &quot;MS Shell Dlg 2&quot;;
 }</string>
     </property>
     <property name="text">
-     <string>-</string>
+     <string>Payment</string>
     </property>
    </widget>
    <zorder>scrollArea</zorder>
    <zorder>bg</zorder>
    <zorder>addButton</zorder>
-   <zorder>deleteButton</zorder>
+   <zorder>paymentButton</zorder>
   </widget>
  </widget>
  <resources/>

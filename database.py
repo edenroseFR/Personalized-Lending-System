@@ -90,8 +90,24 @@ def creditorHistory(ID=None):
     ORDER BY date ASC
     ''' %(ID))
 
+    history = [list(i) for i in cursor.fetchall()]
+    payments = paymentHistory(ID)
+    history = history+payments
+
+    return history
+
+def paymentHistory(ID=None):
+    cursor.execute('''
+    SELECT p.id, p.amount, p.date, a.full_name FROM payment p
+    JOIN attendees a 
+    ON p.attendee_id = a.id
+    WHERE p.creditor_id = %d
+    ORDER BY p.date ASC
+    '''%ID)
+
     res = cursor.fetchall()
     res = [list(i) for i in res]
+    res = [[i[0], 'Payment', i[1], i[2], i[3]] for i in res]
     return res
 
 
@@ -126,9 +142,24 @@ def deleteCredit(creditID=None):
     database.commit()
 
 
+def get_paidAmount(ID=None):
+    cursor.execute('''
+    SELECT TRIM(sum(amount))+0 FROM payment
+    WHERE creditor_id = %d
+    '''%ID)
+
+    res = str(cursor.fetchone())
+    res = res[1:-2]
+    try:
+        return float(res)
+    except:
+        return 0
+
+
+
 def creditors_balance():
     cursor.execute('''
-    SELECT c.first_name, c.last_name,
+    SELECT c.id, c.first_name, c.last_name,
     trim(sum(b.price_or_amount+(b.price_or_amount*(b.interest/100))))+0 as balance,
     c.purok 
     FROM creditors c
@@ -138,8 +169,11 @@ def creditors_balance():
     ''')
 
     res = cursor.fetchall()
-    res = [[i[0] + ' ' + i[1], i[2], i[3]] for i in res]
+    res = [[i[0], i[1] + ' ' + i[2], float(i[3]), i[4]] for i in res]
+    for i in res:
+        i[2] = i[2] - get_paidAmount(i[0])
     return res
+
 
 def allCreditors():
     cursor.execute('''
@@ -148,3 +182,45 @@ def allCreditors():
 
     return len(cursor.fetchall())
 
+def getCreditorInformation(ID=None):
+    cursor.execute('''
+    SELECT * FROM creditors
+    WHERE id = %d
+    ''' %ID)
+
+    return list(cursor.fetchone())
+
+def updateCreditorInformation(ID=None, newData=None):
+    cursor.execute('''
+    UPDATE creditors
+    SET first_name = '%s', middle_name = '%s', last_name = '%s', purok = '%s', barangay = '%s', municipality = '%s'
+    WHERE id = %d
+    ''' % (newData['first'], newData['middle'], newData['last'],
+           newData['purok'], newData['barangay'], newData['municipality'], ID))
+
+    database.commit()
+
+def getFullName(id=None):
+    cursor.execute('''
+    SELECT first_name, middle_name, last_name FROM creditors
+    WHERE id = %d
+    ''' %id)
+
+    first, middle, last = cursor.fetchone()
+    return first + ' ' + middle + ' ' + last
+
+def deleteCreditor(id=None):
+    cursor.execute('''
+    DELETE FROM creditors
+    WHERE id = %d
+    ''' % id)
+
+    database.commit()
+
+def recordPayment(amount=None, date=None, creditorID=None, attendeeID=None):
+    cursor.execute('''
+    INSERT INTO payment (amount, date, creditor_id, attendee_id)
+    VALUES(%d, '%s', %d, %d)
+    ''' %(amount, date, creditorID, attendeeID))
+
+    database.commit()

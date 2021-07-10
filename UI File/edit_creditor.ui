@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>329</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>40</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#label{
+color: black;
+font: 25 26pt &quot;Bodoni MT Poster Compressed&quot;;
+}</string>
+    </property>
+    <property name="text">
+     <string>Borrower</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QWidget" name="rect1_2" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>150</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#rect1_2{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+    </property>
+    <widget class="QLineEdit" name="middle_name">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>5</y>
+       <width>261</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#middle_name{
+border: 1px solid white;
+}</string>
+     </property>
+     <property name="placeholderText">
+      <string>Middle Name</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="rect1" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>110</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#rect1{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+    </property>
+    <widget class="QLineEdit" name="first_name">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>5</y>
+       <width>261</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#first_name{
+border: 1px solid white;
+}</string>
+     </property>
+     <property name="placeholderText">
+      <string>First Name</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="rect1_5" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#rect1_5{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+    </property>
+    <widget class="QLineEdit" name="barangay">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>5</y>
+       <width>261</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#barangay{
+border: 1px solid white;
+}</string>
+     </property>
+     <property name="placeholderText">
+      <string>Barangay</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="rect1_4" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>240</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#rect1_4{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+    </property>
+    <widget class="QLineEdit" name="purok">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>5</y>
+       <width>261</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#purok{
+border: 1px solid white;
+}</string>
+     </property>
+     <property name="placeholderText">
+      <string>Purok</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="rect1_3" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>190</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#rect1_3{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+    </property>
+    <widget class="QLineEdit" name="last_name">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>5</y>
+       <width>261</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#last_name{
+border: 1px solid white;
+}</string>
+     </property>
+     <property name="placeholderText">
+      <string>Last Name</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="rect1_6" native="true">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>320</y>
+      <width>281</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#rect1_6{
+background-color:  white;
+border: 1px solid  #fc5404;
+border-radius: 15px;
+}</string>
+    </property>
+    <widget class="QLineEdit" name="municipality">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>5</y>
+       <width>261</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#municipality{
+border: 1px solid white;
+}</string>
+     </property>
+     <property name="placeholderText">
+      <string>Municipality</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>380</y>
+      <width>301</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Record</string>
+    </property>
+    <property name="autoRepeatInterval">
+     <number>100</number>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

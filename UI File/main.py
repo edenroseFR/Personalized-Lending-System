@@ -1,8 +1,10 @@
 import sys
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 from PyQt5.uic import loadUi
 from editBalance import EditBalance
+from editCreditor import EditCreditor
+from addPayment import AddPayment
 import database
 import messagebox
 import re
@@ -63,9 +65,12 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.configureWidgets()
 
     def configureWidgets(self):
+        self.tableWidget.setColumnWidth(0,10)
+        self.tableWidget.setColumnWidth(2,10)
+
         self.home.clicked.connect(self.homeClicked)
         self.addButton.clicked.connect(self.addButtonClicked)
-        self.deleteButton.clicked.connect(self.deleteButtonClicked)
+        self.paymentButton.clicked.connect(self.paymentButtonClicked)
         self.name.setText(self.lendee)
         self.purok.setText(self.lendee_address)
         self.tableWidget.itemDoubleClicked.connect(self.doubleClicked)
@@ -82,13 +87,15 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.tableWidget.setRowCount(len(self.activities))
 
         for activity in self.activities:
+            self.tableWidget.setItem(row, 0, QTableWidgetItem(str(activity[0])))
+            self.tableWidget.setItem(row, 1, QTableWidgetItem(str(activity[1])))
+            self.tableWidget.setItem(row, 3, QTableWidgetItem(str(activity[2])))
+            self.tableWidget.setItem(row, 4, QTableWidgetItem(str(activity[3])))
+            self.tableWidget.setItem(row, 5, QTableWidgetItem(str(activity[4])))
             if isinstance(activity[1], str):
-                self.tableWidget.setItem(row, 0, QTableWidgetItem(str(activity[0])))
-                self.tableWidget.setItem(row, 1, QTableWidgetItem(str(activity[1])))
                 self.tableWidget.setItem(row, 2, QTableWidgetItem('+'))
-                self.tableWidget.setItem(row, 3, QTableWidgetItem(str(activity[2])))
-                self.tableWidget.setItem(row, 4, QTableWidgetItem(str(activity[3])))
-                self.tableWidget.setItem(row, 5, QTableWidgetItem(str(activity[4])))
+            else:
+                self.tableWidget.setItem(row, 2, QTableWidgetItem('-'))
             row += 1
 
     def homeClicked(self):
@@ -100,12 +107,10 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.newWin = EditBalance(self, self.lendee, self.id)
         self.newWin.show()
 
-    def deleteButtonClicked(self):
-        if messagebox.confirmDelete(self):
-            creditID = self.tableWidget.item(self.tableWidget.currentRow(),0).text()
-            database.deleteCredit(int(creditID))
+    def paymentButtonClicked(self):
+        self.newWin = AddPayment(self, creditorID=self.id)
+        self.newWin.show()
 
-        self.fillTable(self.id)
 
 
 
@@ -154,8 +159,8 @@ class NewCreditor(QtWidgets.QMainWindow):
         self._amount = int(self.amount.cleanText())
         self._interest = int(self.interest.cleanText())
         self._itemName = self.itemName.text()
-        self._quantity = self.quantity.cleanText()
-        self._price = self.price.cleanText()
+        self._quantity = int(self.quantity.cleanText())
+        self._price = int(self.price.cleanText())
         self._attendee = self.attendee.currentText()
         self._date = self.date.date().toString("yyyy-MM-dd")
 
@@ -178,6 +183,8 @@ class NewCreditor(QtWidgets.QMainWindow):
             database.record_borrowed_money(self._amount, self._interest, self._date,
                                            database.lastInsertedID(), database.attendeeID(self._attendee))
         if self._itemName and self._quantity and self._price:
+            print((self._itemName, self._quantity, self._price, self._date,
+                                          database.lastInsertedID(), database.attendeeID(self._attendee)))
             database.record_borrowed_item(self._itemName, self._quantity, self._price, self._date,
                                           database.lastInsertedID(), database.attendeeID(self._attendee))
 
@@ -191,9 +198,12 @@ class BorrowersTable(QtWidgets.QMainWindow):
         self.configureWidgets()
 
     def configureWidgets(self):
+        self.tableWidget.setColumnWidth(0, 10)
+        self.tableWidget.setColumnWidth(1, 250)
         self.fillTable()
 
         self.home.clicked.connect(self.homeClicked)
+        self.editButton.clicked.connect(self.editButtonClicked)
 
     def fillTable(self):
         self.tableWidget.setRowCount(0)
@@ -205,17 +215,25 @@ class BorrowersTable(QtWidgets.QMainWindow):
             self.tableWidget.setItem(row, 0, QTableWidgetItem(str(i[0])))
             self.tableWidget.setItem(row, 1, QTableWidgetItem(str(i[1])))
             self.tableWidget.setItem(row, 2, QTableWidgetItem(str(i[2])))
+            self.tableWidget.setItem(row, 3, QTableWidgetItem(str(i[3])))
 
             row += 1
-
-
-
 
     def homeClicked(self):
         self.newWin = MainWindow()
         self.newWin.show()
         self.close()
 
+    def editButtonClicked(self):
+        self.borrowerID = int(self.tableWidget.item(self.tableWidget.currentRow(),0).text())
+        self.newWin = EditCreditor(self, self.borrowerID)
+        self.newWin.show()
+
+    '''def deleteButtonClicked(self):
+        self.borrowerID = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
+        fullNmae = database.getFullName(self.borrowerID)
+        if messagebox.confirmDeleteCreditor(fullNmae):
+            database.deleteCreditor(self.borrowerID)'''
 
 
 app = QApplication(sys.argv)
