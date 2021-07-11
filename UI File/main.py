@@ -20,7 +20,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.listWidget_height = 25
         self.lineEdit.textChanged.connect(self.fieldPressed)
         self.addNewUser.clicked.connect(self.addNewPressed)
+        self.addNewUser.setShortcut('Ctrl+A')
         self.creditorsButton.clicked.connect(self.creditorsPressed)
+        self.collectibleButton.clicked.connect(self.collectiblePressed)
 
     def fieldPressed(self):
         self.listWidget.clear()
@@ -52,6 +54,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.newWin.show()
         self.close()
 
+    def collectiblePressed(self):
+        self.newWin = CollectiblesTable()
+        self.newWin.show()
+        self.close()
 
 class BalanceSheet(QtWidgets.QMainWindow):
     def __init__(self, name=None, id=None):
@@ -61,12 +67,15 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.lendee = name
         self.id = id
         self.lendee_address = database.get_address(person=self.id)
+        self._balance = int(database.getBalance(self.id))
+        self._balance = '₱ {:,}'.format(self._balance)
         self.fillTable(self.id)
         self.configureWidgets()
 
     def configureWidgets(self):
         self.tableWidget.setColumnWidth(0,10)
         self.tableWidget.setColumnWidth(2,10)
+        self.balance.setText(str(self._balance))
 
         self.home.clicked.connect(self.homeClicked)
         self.addButton.clicked.connect(self.addButtonClicked)
@@ -199,11 +208,71 @@ class BorrowersTable(QtWidgets.QMainWindow):
 
     def configureWidgets(self):
         self.tableWidget.setColumnWidth(0, 10)
-        self.tableWidget.setColumnWidth(1, 250)
+        self.tableWidget.setColumnWidth(1, 170)
         self.fillTable()
 
         self.home.clicked.connect(self.homeClicked)
         self.editButton.clicked.connect(self.editButtonClicked)
+        self.deleteButton.clicked.connect(self.deleteButtonClicked)
+
+    def fillTable(self):
+        self.tableWidget.setRowCount(0)
+        self.data = database.allCreditorInfo()
+        self.tableWidget.setRowCount(len(self.data))
+
+        row = 0
+        for i in self.data:
+            self.tableWidget.setItem(row, 0, QTableWidgetItem(str(i[0])))
+            self.tableWidget.setItem(row, 1, QTableWidgetItem(str(i[1])))
+            self.tableWidget.setItem(row, 2, QTableWidgetItem(str(i[2])))
+            self.tableWidget.setItem(row, 3, QTableWidgetItem(str(i[3])))
+            self.tableWidget.setItem(row, 4, QTableWidgetItem(str(i[4])))
+
+            row += 1
+
+    def homeClicked(self):
+        self.newWin = MainWindow()
+        self.newWin.show()
+        self.close()
+
+    def editButtonClicked(self):
+        try:
+            self.borrowerID = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
+            self.newWin = EditCreditor(self, self.borrowerID)
+            self.newWin.show()
+        except:
+            messagebox.selectBorrower(self)
+
+    def deleteButtonClicked(self):
+        try:
+            self.borrowerID = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
+            if messagebox.confirmDelete(self):
+
+                try:
+                    database.deleteCreditor(self.borrowerID)
+                    self.fillTable()
+                except:
+                    messagebox.cantDelete(self)
+
+        except:
+            messagebox.selectBorrower(self)
+
+
+
+
+class CollectiblesTable(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(CollectiblesTable, self).__init__()
+        loadUi('collectibles.ui',self)
+        self.configureWidgets()
+
+    def configureWidgets(self):
+        self.tableWidget.setColumnWidth(0, 10)
+        self.tableWidget.setColumnWidth(1, 170)
+
+        self.tableWidget.itemDoubleClicked.connect(self.item)
+        self.home.clicked.connect(self.homeClicked)
+        self.fillTable()
 
     def fillTable(self):
         self.tableWidget.setRowCount(0)
@@ -219,21 +288,17 @@ class BorrowersTable(QtWidgets.QMainWindow):
 
             row += 1
 
+    def item(self):
+        id = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
+        name = database.getFullName(id)
+        self.newWin = BalanceSheet(name, id)
+        self.newWin.show()
+        self.close()
+
     def homeClicked(self):
         self.newWin = MainWindow()
         self.newWin.show()
         self.close()
-
-    def editButtonClicked(self):
-        self.borrowerID = int(self.tableWidget.item(self.tableWidget.currentRow(),0).text())
-        self.newWin = EditCreditor(self, self.borrowerID)
-        self.newWin.show()
-
-    '''def deleteButtonClicked(self):
-        self.borrowerID = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
-        fullNmae = database.getFullName(self.borrowerID)
-        if messagebox.confirmDeleteCreditor(fullNmae):
-            database.deleteCreditor(self.borrowerID)'''
 
 
 app = QApplication(sys.argv)

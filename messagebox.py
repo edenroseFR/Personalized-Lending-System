@@ -7,7 +7,7 @@ def debtBoxIncomplete(parent=None):
     return QMessageBox.information(parent,'Incomplete Fields', 'Please fill up all the fields in Money or Item tab.')
 
 def confirmDelete(parent=None):
-    prompt = QMessageBox.warning(parent, 'Confirm Deletion', 'This action cannot be undone.\nAre you sure you want to delete this item ?', QMessageBox.Ok, QMessageBox.Cancel)
+    prompt = QMessageBox.warning(parent, 'Confirm Deletion', 'This action cannot be undone.\nAre you sure you want to proceed?', QMessageBox.Ok, QMessageBox.Cancel)
     if prompt == QMessageBox.Ok:
         return True
 
@@ -23,3 +23,9 @@ def creditorUpdated(parent=None):
 
 def emptyAmount(parent=None):
     return QMessageBox.warning(parent, 'Payment', 'Amount cannot be zero.')
+
+def selectBorrower(parent=None):
+    return QMessageBox.warning(parent, 'Edit', 'Please select a row first.')
+
+def cantDelete(parent=None):
+    return QMessageBox.information(parent, 'Delete', 'Oops! You cannot delete a creditor who has not fully paid yet')

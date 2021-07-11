@@ -155,6 +155,15 @@ def get_paidAmount(ID=None):
     except:
         return 0
 
+def allCreditorInfo():
+    cursor.execute('''
+    SELECT * FROM creditors
+    ''')
+
+    res = cursor.fetchall()
+    res = [[i[0], i[1] + ' ' + i[2] + ' ' + i[3], i[4], i[5], i[6]] for i in res]
+    return res
+
 
 
 def creditors_balance():
@@ -174,6 +183,11 @@ def creditors_balance():
         i[2] = i[2] - get_paidAmount(i[0])
     return res
 
+def getBalance(creditorID = None):
+    borrowers = creditors_balance()
+    for i in borrowers:
+        if creditorID == i[0]:
+            return i[2]
 
 def allCreditors():
     cursor.execute('''
