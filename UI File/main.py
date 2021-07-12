@@ -23,6 +23,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.addNewUser.setShortcut('Ctrl+A')
         self.creditorsButton.clicked.connect(self.creditorsPressed)
         self.collectibleButton.clicked.connect(self.collectiblePressed)
+        self.paymentButton.clicked.connect(self.paymentPressed)
 
     def fieldPressed(self):
         self.listWidget.clear()
@@ -56,6 +57,11 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def collectiblePressed(self):
         self.newWin = CollectiblesTable()
+        self.newWin.show()
+        self.close()
+
+    def paymentPressed(self):
+        self.newWin = PaymentsTable()
         self.newWin.show()
         self.close()
 
@@ -214,10 +220,12 @@ class BorrowersTable(QtWidgets.QMainWindow):
         self.home.clicked.connect(self.homeClicked)
         self.editButton.clicked.connect(self.editButtonClicked)
         self.deleteButton.clicked.connect(self.deleteButtonClicked)
+        self.searchButton.clicked.connect(self.searchButtonClicked)
+        self.clearButton.clicked.connect(self.clearButtonClicked)
 
-    def fillTable(self):
+    def fillTable(self, data=database.allCreditorInfo()):
         self.tableWidget.setRowCount(0)
-        self.data = database.allCreditorInfo()
+        self.data = data
         self.tableWidget.setRowCount(len(self.data))
 
         row = 0
@@ -258,6 +266,18 @@ class BorrowersTable(QtWidgets.QMainWindow):
             messagebox.selectBorrower(self)
 
 
+    def searchButtonClicked(self):
+        self.input = self.lineEdit.text()
+        self.result = database.getSearchResult(input=self.input, table='borrowers')
+        if self.result != []:
+            self.fillTable(data=self.result)
+        else:
+            messagebox.noResultFound(self)
+
+    def clearButtonClicked(self):
+        self.lineEdit.clear()
+        self.fillTable()
+
 
 
 class CollectiblesTable(QtWidgets.QMainWindow):
@@ -270,13 +290,19 @@ class CollectiblesTable(QtWidgets.QMainWindow):
         self.tableWidget.setColumnWidth(0, 10)
         self.tableWidget.setColumnWidth(1, 170)
 
+        self.amountButton.hide()
+        self.addressButton.hide()
+        self.lineEdit.returnPressed.connect(self.searchButtonClicked)
         self.tableWidget.itemDoubleClicked.connect(self.item)
         self.home.clicked.connect(self.homeClicked)
+        self.sortButton.clicked.connect(self.sortButtonClicked)
+        self.searchButton.clicked.connect(self.searchButtonClicked)
+        self.clearButton.clicked.connect(self.clearButtonClicked)
         self.fillTable()
 
-    def fillTable(self):
+    def fillTable(self, data=database.creditors_balance()):
         self.tableWidget.setRowCount(0)
-        self.data = database.creditors_balance()
+        self.data = data
         self.tableWidget.setRowCount(database.allCreditors())
 
         row = 0
@@ -299,6 +325,81 @@ class CollectiblesTable(QtWidgets.QMainWindow):
         self.newWin = MainWindow()
         self.newWin.show()
         self.close()
+
+    def sortButtonClicked(self):
+        self.amountButton.show()
+        self.addressButton.show()
+        self.amountButton.clicked.connect(self.amountButtonClicked)
+        self.addressButton.clicked.connect(self.addressButtonClicked)
+
+    def amountButtonClicked(self):
+        self.amountButton.hide()
+        self.addressButton.hide()
+        self.sortedData = database.sortedCollectibles(a='amount')
+        self.fillTable(data=self.sortedData)
+
+
+    def addressButtonClicked(self):
+        self.amountButton.hide()
+        self.addressButton.hide()
+        self.sortedData = database.sortedCollectibles(a='address')
+        self.fillTable(data=self.sortedData)
+
+    def searchButtonClicked(self):
+        self.input = self.lineEdit.text()
+        self.result = database.getSearchResult(self.input, 'collectible')
+        if self.result != []:
+            self.fillTable(self.result)
+        else:
+            messagebox.noResultFound(self)
+
+    def clearButtonClicked(self):
+        self.lineEdit.clear()
+        self.fillTable()
+
+
+
+class PaymentsTable(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(PaymentsTable, self).__init__()
+        loadUi('payments.ui', self)
+        self.configureWidgets()
+
+    def configureWidgets(self):
+        self.fillTable()
+        self.backButton.clicked.connect(self.backButtonClicked)
+        self.searchButton.clicked.connect(self.searchButtonClicked)
+        self.clearButton.clicked.connect(self.clearButtonClicked)
+
+    def fillTable(self, data=database.payments()):
+        self.data = data
+        self.tableWidget.setRowCount(len(self.data))
+
+        row = 0
+        for i in self.data:
+            self.tableWidget.setItem(row, 0, QTableWidgetItem(i[0]))
+            self.tableWidget.setItem(row, 1, QTableWidgetItem(str(i[1])))
+            self.tableWidget.setItem(row, 2, QTableWidgetItem(str(i[2])))
+            self.tableWidget.setItem(row, 3, QTableWidgetItem(i[3]))
+
+            row += 1
+
+    def backButtonClicked(self):
+        self.newWin = MainWindow()
+        self.newWin.show()
+        self.close()
+
+    def searchButtonClicked(self):
+        self.input = self.lineEdit.text()
+        self.result = database.getSearchResult(self.input, 'payments')
+        if self.result != []:
+            self.fillTable(data=self.result)
+        else:
+            messagebox.noResultFound(self)
+
+    def clearButtonClicked(self):
+        self.lineEdit.clear()
+        self.fillTable()
 
 
 app = QApplication(sys.argv)

@@ -165,7 +165,6 @@ def allCreditorInfo():
     return res
 
 
-
 def creditors_balance():
     cursor.execute('''
     SELECT c.id, c.first_name, c.last_name,
@@ -182,6 +181,35 @@ def creditors_balance():
     for i in res:
         i[2] = i[2] - get_paidAmount(i[0])
     return res
+
+def sortedCollectibles(a=None):
+    from mergesort import mergeSort
+
+    data = creditors_balance()
+    sortedData = []
+    if a =='amount':
+        amount = [i[2] for i in data]
+        sortedAmount = mergeSort(amount)
+
+        for amount in sortedAmount:
+            for person in data:
+                if amount == person[2]:
+                    sortedData.append(person)
+                    data.remove(person)
+
+    elif a == 'address':
+        address = [i[3] for i in data]
+        sortedAddress = mergeSort(address)
+
+        for address in sortedAddress:
+            for person in data:
+                if address == person[3]:
+                    sortedData.append(person)
+                    data.remove(person)
+
+    return sortedData
+
+
 
 def getBalance(creditorID = None):
     borrowers = creditors_balance()
@@ -238,3 +266,50 @@ def recordPayment(amount=None, date=None, creditorID=None, attendeeID=None):
     ''' %(amount, date, creditorID, attendeeID))
 
     database.commit()
+
+
+def getSearchResult(input=None, table=None):
+    inp = input.lower()
+    result = []
+
+    if table == 'collectible':
+        data = creditors_balance()
+        for person in data:
+            j = [person[1].lower(), person[3].lower()]
+            for item in j:
+                if inp in item:
+                    result.append(person)
+
+
+    elif table == 'borrowers':
+        data = allCreditorInfo()
+        for person in data:
+            j = [person[1].lower(), person[2].lower(), person[3].lower(), person[4].lower()]
+            for item in j:
+                if inp in item:
+                    result.append(person)
+
+    elif table == 'payments':
+        data = payments()
+        for person in data:
+            j = [person[0].lower(), person[3].lower()]
+            for item in j:
+                if inp in item:
+                    result.append(person)
+
+    return result
+
+
+def payments():
+    cursor.execute('''
+    SELECT c.first_name, c.middle_name, c.last_name, p.amount, p.date, a.full_name 
+    FROM payment p
+    JOIN creditors c on p.creditor_id = c.id
+    JOIN attendees a on p.attendee_id = a.id
+    ''')
+
+    res = cursor.fetchall()
+    res = [[i[0] + ' ' + i[1] + ' ' + i[2], i[3], i[4], i[5]] for i in res]
+
+    return res
+

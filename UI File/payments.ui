@@ -31,8 +31,8 @@ background-color: #fc5404;
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>70</y>
+       <x>10</x>
+       <y>0</y>
        <width>761</width>
        <height>81</height>
       </rect>
@@ -110,6 +110,9 @@ border: 1px solid white;
         </property>
         <property name="frameShape">
          <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="editTriggers">
+         <set>QAbstractItemView::NoEditTriggers</set>
         </property>
         <property name="alternatingRowColors">
          <bool>true</bool>
@@ -190,7 +193,7 @@ border: 1px solid white;
      <property name="geometry">
       <rect>
        <x>30</x>
-       <y>153</y>
+       <y>130</y>
        <width>111</width>
        <height>20</height>
       </rect>
@@ -208,9 +211,125 @@ font: 20px;
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QPushButton" name="backButton">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>30</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>back</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="widget_2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>120</y>
+       <width>451</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#widget_2{
+background-color: white;
+border: 1px solid black;
+border-radius: 20px;
+}</string>
+     </property>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>5</y>
+        <width>341</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#lineEdit{
+border: 1px white;
+}</string>
+      </property>
+      <property name="placeholderText">
+       <string>search borrower, reciever</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="clearButton">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>10</y>
+        <width>21</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#clearButton{
+color: blue;
+font: 10pt &quot;Segoe UI&quot;;
+border: TRANSPARENT;
+}</string>
+      </property>
+      <property name="text">
+       <string>X</string>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>383</x>
+        <y>10</y>
+        <width>20</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="searchButton">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>10</y>
+        <width>41</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>../img/search-icon.png</normaloff>../img/search-icon.png</iconset>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <zorder>line</zorder>
+     <zorder>searchButton</zorder>
+     <zorder>lineEdit</zorder>
+     <zorder>clearButton</zorder>
+    </widget>
     <zorder>label</zorder>
     <zorder>paymentLabel</zorder>
     <zorder>widget</zorder>
+    <zorder>backButton</zorder>
+    <zorder>widget_2</zorder>
    </widget>
   </widget>
  </widget>

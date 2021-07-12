@@ -29,3 +29,6 @@ def selectBorrower(parent=None):
 
 def cantDelete(parent=None):
     return QMessageBox.information(parent, 'Delete', 'Oops! You cannot delete a creditor who has not fully paid yet')
+
+def noResultFound(parent=None):
+    return QMessageBox.information(parent, 'Search Result', 'No result found.')
