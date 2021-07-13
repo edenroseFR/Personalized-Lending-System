@@ -350,13 +350,13 @@ font: 12px;
 }</string>
      </property>
      <property name="text">
-      <string>Due Today</string>
+      <string>Due Date</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="duetodayButton">
+    <widget class="QPushButton" name="dueButton">
      <property name="geometry">
       <rect>
        <x>240</x>
@@ -369,7 +369,7 @@ font: 12px;
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
      <property name="styleSheet">
-      <string notr="true">#duetodayButton{
+      <string notr="true">#dueButton{
 color: white;
 background-color: #f9b208;
 border: 1px solid white;
@@ -432,8 +432,8 @@ border-radius: 25;
      </property>
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>250</y>
+       <x>159</x>
+       <y>245</y>
        <width>451</width>
        <height>231</height>
       </rect>
@@ -450,7 +450,7 @@ border-radius: 25;
     <zorder>collectibleLabel</zorder>
     <zorder>paymentLabel</zorder>
     <zorder>duetodayLabel</zorder>
-    <zorder>duetodayButton</zorder>
+    <zorder>dueButton</zorder>
     <zorder>widget</zorder>
     <zorder>addNewUser</zorder>
     <zorder>listWidget</zorder>

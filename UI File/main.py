@@ -24,6 +24,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.creditorsButton.clicked.connect(self.creditorsPressed)
         self.collectibleButton.clicked.connect(self.collectiblePressed)
         self.paymentButton.clicked.connect(self.paymentPressed)
+        self.dueButton.clicked.connect(self.duePressed)
 
     def fieldPressed(self):
         self.listWidget.clear()
@@ -62,6 +63,11 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def paymentPressed(self):
         self.newWin = PaymentsTable()
+        self.newWin.show()
+        self.close()
+
+    def duePressed(self):
+        self.newWin = DueTable()
         self.newWin.show()
         self.close()
 
@@ -105,7 +111,7 @@ class BalanceSheet(QtWidgets.QMainWindow):
             self.tableWidget.setItem(row, 0, QTableWidgetItem(str(activity[0])))
             self.tableWidget.setItem(row, 1, QTableWidgetItem(str(activity[1])))
             self.tableWidget.setItem(row, 3, QTableWidgetItem(str(activity[2])))
-            self.tableWidget.setItem(row, 4, QTableWidgetItem(str(activity[3])))
+            self.tableWidget.setItem(row, 4, QTableWidgetItem(str(activity[3].strftime('%Y, %B %d'))))
             self.tableWidget.setItem(row, 5, QTableWidgetItem(str(activity[4])))
             if isinstance(activity[1], str):
                 self.tableWidget.setItem(row, 2, QTableWidgetItem('+'))
@@ -400,6 +406,32 @@ class PaymentsTable(QtWidgets.QMainWindow):
     def clearButtonClicked(self):
         self.lineEdit.clear()
         self.fillTable()
+
+
+class DueTable(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(DueTable, self).__init__()
+        loadUi('duedates.ui', self)
+        self.configureWidgets()
+
+    def configureWidgets(self):
+        self.fillTable()
+        self.homeButton.clicked.connect(self.homeButtonClicked)
+
+    def fillTable(self, data = database.getDues()):
+        self.tableWidget.setRowCount(len(data))
+
+        row = 0
+        for i in data:
+            self.tableWidget.setItem(row, 0, QTableWidgetItem(str(i[0])))
+            self.tableWidget.setItem(row, 0, QTableWidgetItem(str(i[1])))
+            self.tableWidget.setItem(row, 0, QTableWidgetItem(str(i[3])))
+            row += 1
+
+    def homeButtonClicked(self):
+        self.newWin = MainWindow()
+        self.newWin.show()
+        self.close()
 
 
 app = QApplication(sys.argv)

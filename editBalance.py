@@ -24,14 +24,18 @@ class EditBalance(QtWidgets.QMainWindow):
         else:
             self.pushButton.setText('Update')
             self.data = database.getCreditInformation(creditID=int(self.creditID))
+            index = self.attendee.findText(self.data['attendee'])
+            self.attendee.setCurrentIndex(index)
+            self.date.setDate(self.data['date'])
             if self.data['interest'] == 0:
-                index = self.attendee.findText(self.data['attendee'])
                 self.tabWidget.setCurrentIndex(1)
                 self.itemName.setText(self.data['name'])
-                self.quantity.setValue(self.data['quantity'])
                 self.price.setValue(self.data['amount'])
-                self.attendee.setCurrentIndex(index)
-                self.date.setDate(self.data['date'])
+                self.quantity.setValue(self.data['quantity'])
+            else:
+                self.tabWidget.setCurrentIndex(0)
+                self.amount.setValue(self.data['amount'])
+                self.interest.setValue(self.data['interest'])
 
 
     def pushButtonClicked(self):

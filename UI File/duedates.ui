@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>771</width>
-    <height>547</height>
+    <height>520</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,8 +31,8 @@ background-color: #fc5404;
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>70</y>
+       <x>10</x>
+       <y>20</y>
        <width>761</width>
        <height>81</height>
       </rect>
@@ -169,17 +169,12 @@ border: 1px solid white;
         </column>
         <column>
          <property name="text">
-          <string>New Column</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
-          <string>CONTACT</string>
-         </property>
-        </column>
-        <column>
-         <property name="text">
           <string>AMOUNT</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>ADDRESS</string>
          </property>
         </column>
        </widget>
@@ -191,7 +186,7 @@ border: 1px solid white;
       <rect>
        <x>30</x>
        <y>153</y>
-       <width>111</width>
+       <width>201</width>
        <height>20</height>
       </rect>
      </property>
@@ -202,15 +197,29 @@ font: 20px;
 }</string>
      </property>
      <property name="text">
-      <string>Due Today</string>
+      <string>1 month today</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QPushButton" name="homeButton">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>70</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>home</string>
+     </property>
+    </widget>
     <zorder>label</zorder>
     <zorder>paymentLabel</zorder>
     <zorder>widget</zorder>
+    <zorder>homeButton</zorder>
    </widget>
   </widget>
  </widget>

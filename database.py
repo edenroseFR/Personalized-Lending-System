@@ -309,7 +309,37 @@ def payments():
     ''')
 
     res = cursor.fetchall()
-    res = [[i[0] + ' ' + i[1] + ' ' + i[2], i[3], i[4], i[5]] for i in res]
+    res = [[i[0] + ' ' + i[1] + ' ' + i[2], i[3], i[4].strftime('%Y, %B %d'), i[5]] for i in res]
 
     return res
 
+def getDues():
+    import datetime
+
+    cursor.execute('''
+    SELECT c.first_name, c.middle_name, c.last_name, i.name, i.date
+    FROM credits i
+    JOIN creditors c
+    ON i.creditor_id = c.id
+    ''')
+
+    res = cursor.fetchall()
+    res = [list(i) for i in res]
+    due = []
+    dateToday = datetime.date.today()
+
+    for i in res:
+        daysPassed = dateToday - i[4]
+        daysPassed = int(daysPassed.days)
+        if (daysPassed) == 30:
+            due.append(i)
+
+    return due
+
+
+
+
+
+
+
+getDues()
