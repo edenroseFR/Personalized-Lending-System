@@ -5,6 +5,7 @@ Personal Lending System (PLS) is a software solution, designed to help the Lende
 
 Features
 •	Add new creditor’s information
+
 •	Edit creditor’s information
 •	Search creditors
 •	Delete creditors
