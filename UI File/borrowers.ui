@@ -7,11 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>764</width>
-    <height>504</height>
+    <height>496</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Borrowers</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/due today.png</normaloff>../img/due today.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="bg" native="true">
@@ -313,7 +317,11 @@ color: white;
 background-color: #f9b208;
 border: 1px solid white;
 border-radius: 10px;
-}</string>
+}
+#editButton:hover{
+background-color:rgb(255, 131, 89);
+}
+</string>
      </property>
      <property name="text">
       <string>Edit</string>
@@ -350,7 +358,15 @@ color: white;
 font: 25 25pt &quot;Bodoni MT Poster Compressed&quot;;
 border: TRANSPARENT;
 border-radius: 10px;
-}</string>
+}
+#home:hover{
+background-color:rgb(255, 131, 89);
+color: white;
+font: 25 25pt &quot;Bodoni MT Poster Compressed&quot;;
+border: TRANSPARENT;
+border-radius: 10px;
+}
+</string>
      </property>
      <property name="text">
       <string>Lending Co.</string>
@@ -374,6 +390,9 @@ color: white;
 background-color: #f9b208;
 border: 1px solid white;
 border-radius: 10px;
+}
+#deleteButton:hover{
+background-color:rgb(255, 131, 89);
 }</string>
      </property>
      <property name="text">

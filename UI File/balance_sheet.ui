@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/due today.png</normaloff>../img/due today.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="bg" native="true">
     <property name="geometry">
@@ -121,6 +125,13 @@ font: 44pt &quot;MS Shell Dlg 2&quot;;
      </property>
      <property name="styleSheet">
       <string notr="true">#home{
+color: white;
+font: 25 15pt &quot;Bodoni MT Poster Compressed&quot;;
+border: 1px solid white;
+border-radius: 10px;
+}
+#home:hover{
+background-color:rgb(255, 131, 89);
 color: white;
 font: 25 15pt &quot;Bodoni MT Poster Compressed&quot;;
 border: 1px solid white;

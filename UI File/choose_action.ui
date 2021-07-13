@@ -7,21 +7,37 @@
     <x>0</x>
     <y>0</y>
     <width>270</width>
-    <height>93</height>
+    <height>98</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Choose Action</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/due today.png</normaloff>../img/due today.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="editButton">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>30</y>
-      <width>75</width>
-      <height>23</height>
+      <x>50</x>
+      <y>40</y>
+      <width>71</width>
+      <height>21</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#editButton{
+background-color: rgb(255, 85, 0);
+color: white;
+border: TRANSPARENT;
+border-radius: 10px;
+}
+#editButton:hover{
+background-color: black;
+}
+</string>
     </property>
     <property name="text">
      <string>EDIT</string>
@@ -30,11 +46,23 @@
    <widget class="QPushButton" name="deleteButton">
     <property name="geometry">
      <rect>
-      <x>140</x>
-      <y>30</y>
+      <x>150</x>
+      <y>40</y>
       <width>75</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#deleteButton{
+background-color: rgb(255, 85, 0);
+color: white;
+border: TRANSPARENT;
+border-radius: 10px;
+}
+#deleteButton:hover{
+background-color: black;
+}
+</string>
     </property>
     <property name="text">
      <string>DELETE</string>

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Lending Company</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/due today.png</normaloff>../img/due today.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="bg" native="true">
     <property name="geometry">
@@ -45,6 +49,12 @@ background-color: #fc5404;
 color: white;
 background-color: #f9b208;
 border: 1px solid white;
+border-radius: 10px;
+}
+#paymentButton:hover{
+color: white;
+background-color: #f9b208;
+border: 3px solid white;
 border-radius: 10px;
 }</string>
      </property>
@@ -79,6 +89,12 @@ border-radius: 10px;
 color: white;
 background-color: #f9b208;
 border: 1px solid white;
+border-radius: 10px;
+}
+#creditorsButton:hover{
+color: white;
+background-color: #f9b208;
+border: 3px solid white;
 border-radius: 10px;
 }</string>
      </property>
@@ -119,6 +135,12 @@ border-radius: 10px;
 color: white;
 background-color: #f9b208;
 border: 1px solid white;
+border-radius: 10px;
+}
+#collectibleButton:hover{
+color: white;
+background-color: #f9b208;
+border: 3px solid white;
 border-radius: 10px;
 }</string>
      </property>
@@ -374,6 +396,12 @@ color: white;
 background-color: #f9b208;
 border: 1px solid white;
 border-radius: 10px;
+}
+#dueButton:hover{
+color: white;
+background-color: #f9b208;
+border: 3px solid white;
+border-radius: 10px;
 }</string>
      </property>
      <property name="text">
@@ -407,7 +435,11 @@ border-radius: 10px;
 background-color: white;
 border: 1px solid white;
 border-radius: 25;
-}</string>
+}
+#addNewUser:hover{
+background-color:rgb(255, 131, 89);
+}
+</string>
      </property>
      <property name="text">
       <string/>
@@ -435,7 +467,7 @@ border-radius: 25;
        <x>159</x>
        <y>245</y>
        <width>451</width>
-       <height>231</height>
+       <height>201</height>
       </rect>
      </property>
      <property name="inputMethodHints">

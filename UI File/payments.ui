@@ -7,11 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>771</width>
-    <height>518</height>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Payments</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/due today.png</normaloff>../img/due today.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="bg" native="true">
@@ -32,7 +36,7 @@ background-color: #fc5404;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>0</y>
+       <y>10</y>
        <width>761</width>
        <height>81</height>
       </rect>
@@ -201,7 +205,7 @@ border: 1px solid white;
      <property name="styleSheet">
       <string notr="true">#paymentLabel{
 color: white;
-font: 20px;
+font: 15px;
 }</string>
      </property>
      <property name="text">
@@ -209,19 +213,6 @@ font: 20px;
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="backButton">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>30</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>back</string>
      </property>
     </widget>
     <widget class="QWidget" name="widget_2" native="true">
@@ -325,11 +316,46 @@ border: TRANSPARENT;
      <zorder>lineEdit</zorder>
      <zorder>clearButton</zorder>
     </widget>
+    <widget class="QPushButton" name="backButton">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>30</y>
+       <width>31</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#backButton{
+background-color: TRANSPARENT;
+border: TRANSPARENT;
+border-radius: 15px;
+}
+#backButton:hover{
+background-color:rgb(255, 131, 89);
+border: TRANSPARENT;
+border-radius: 15px;
+}</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/back-button.png</normaloff>../img/back-button.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
+     </property>
+    </widget>
     <zorder>label</zorder>
     <zorder>paymentLabel</zorder>
     <zorder>widget</zorder>
-    <zorder>backButton</zorder>
     <zorder>widget_2</zorder>
+    <zorder>backButton</zorder>
    </widget>
   </widget>
  </widget>

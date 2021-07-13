@@ -7,11 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>764</width>
-    <height>500</height>
+    <height>483</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Collectibles</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/due today.png</normaloff>../img/due today.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="bg" native="true">
@@ -308,6 +312,9 @@ color: white;
 background-color: #f9b208;
 border: 1px solid white;
 border-radius: 10px;
+}
+#sortButton:hover{
+background-color:rgb(255, 131, 89);
 }</string>
      </property>
      <property name="text">
@@ -345,7 +352,13 @@ color: white;
 font: 25 25pt &quot;Bodoni MT Poster Compressed&quot;;
 border: TRANSPARENT;
 border-radius: 10px;
-}</string>
+}
+#home:hover{
+background-color: rgb(255, 131, 48);
+}
+
+
+</string>
      </property>
      <property name="text">
       <string>Lending Co.</string>
@@ -360,6 +373,16 @@ border-radius: 10px;
        <height>23</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">#amountButton{
+color: white;
+background-color: #f9b208;
+
+}
+#amountButton:hover{
+background-color:rgb(255, 131, 89);
+}</string>
+     </property>
      <property name="text">
       <string>amount</string>
      </property>
@@ -372,6 +395,16 @@ border-radius: 10px;
        <width>75</width>
        <height>23</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#addressButton{
+color: white;
+background-color: #f9b208;
+
+}
+#addressButton:hover{
+background-color:rgb(255, 131, 89);
+}</string>
      </property>
      <property name="text">
       <string>address</string>

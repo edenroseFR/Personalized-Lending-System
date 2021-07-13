@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Due Today</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../img/due today.png</normaloff>../img/due today.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="bg" native="true">
     <property name="geometry">
@@ -32,9 +36,9 @@ background-color: #fc5404;
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>20</y>
+       <y>50</y>
        <width>761</width>
-       <height>81</height>
+       <height>121</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -184,20 +188,20 @@ border: 1px solid white;
     <widget class="QLabel" name="paymentLabel">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>153</y>
-       <width>201</width>
+       <x>70</x>
+       <y>150</y>
+       <width>81</width>
        <height>20</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">#paymentLabel{
 color: white;
-font: 20px;
+font: 15px;
 }</string>
      </property>
      <property name="text">
-      <string>1 month today</string>
+      <string>due today</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -206,14 +210,36 @@ font: 20px;
     <widget class="QPushButton" name="homeButton">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>70</y>
-       <width>75</width>
-       <height>23</height>
+       <x>80</x>
+       <y>100</y>
+       <width>31</width>
+       <height>31</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">#homeButton{
+background-color: TRANSPARENT;
+border: TRANSPARENT;
+border-radius: 15px;
+}
+#homeButton:hover{
+background-color:rgb(255, 131, 89);
+border: TRANSPARENT;
+border-radius: 15px;
+}</string>
+     </property>
      <property name="text">
-      <string>home</string>
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/back-button.png</normaloff>../img/back-button.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>25</width>
+       <height>25</height>
+      </size>
      </property>
     </widget>
     <zorder>label</zorder>
