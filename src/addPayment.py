@@ -2,12 +2,11 @@ from PyQt5 import QtWidgets
 from PyQt5.uic import loadUi
 import database
 import messagebox
-import re
 
 class AddPayment(QtWidgets.QMainWindow):
     def __init__(self,  parent=None, creditorID=None):
         super(AddPayment,self).__init__(parent)
-        loadUi('add_payment.ui', self)
+        loadUi('../UI File/add_payment.ui', self)
         self.p = parent
         self.creditorID = creditorID
         self.configureWidgets()

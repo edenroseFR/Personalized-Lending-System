@@ -1,5 +1,5 @@
 import sys
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
 from PyQt5.uic import loadUi
 from editBalance import EditBalance
@@ -9,10 +9,11 @@ import database
 import messagebox
 import re
 
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow,self).__init__()
-        loadUi('mainwin.ui', self)
+        loadUi('../UI File/mainwin.ui', self)
         self.listWidget.close()
         self.configureWidgets()
 
@@ -57,7 +58,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.close()
 
     def collectiblePressed(self):
-        self.newWin = CollectiblesTable()
+        self.newWin = CollectiblesTable(data=database.creditors_balance())
         self.newWin.show()
         self.close()
 
@@ -71,10 +72,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.newWin.show()
         self.close()
 
+
 class BalanceSheet(QtWidgets.QMainWindow):
     def __init__(self, name=None, id=None):
         super(BalanceSheet,self).__init__()
-        loadUi('balance_sheet.ui', self)
+        loadUi('../UI File/balance_sheet.ui', self)
 
         self.lendee = name
         self.id = id
@@ -157,12 +159,10 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.close()
 
 
-
-
 class NewCreditor(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        loadUi('add_creditor.ui', self)
+        loadUi('../UI File/add_creditor.ui', self)
         self.configureWidgets()
 
     def configureWidgets(self):
@@ -215,7 +215,7 @@ class NewCreditor(QtWidgets.QMainWindow):
 class BorrowersTable(QtWidgets.QMainWindow):
     def __init__(self):
         super(BorrowersTable,self).__init__()
-        loadUi('borrowers.ui', self)
+        loadUi('../UI File/borrowers.ui', self)
         self.configureWidgets()
 
     def configureWidgets(self):
@@ -285,11 +285,11 @@ class BorrowersTable(QtWidgets.QMainWindow):
         self.fillTable()
 
 
-
 class CollectiblesTable(QtWidgets.QMainWindow):
-    def __init__(self):
+    def __init__(self, data=None):
         super(CollectiblesTable, self).__init__()
-        loadUi('collectibles.ui',self)
+        loadUi('../UI File/collectibles.ui',self)
+        self.data = data
         self.configureWidgets()
 
     def configureWidgets(self):
@@ -306,9 +306,8 @@ class CollectiblesTable(QtWidgets.QMainWindow):
         self.clearButton.clicked.connect(self.clearButtonClicked)
         self.fillTable()
 
-    def fillTable(self, data=database.creditors_balance()):
+    def fillTable(self):
         self.tableWidget.setRowCount(0)
-        self.data = data
         self.tableWidget.setRowCount(database.allCreditors())
 
         row = 0
@@ -364,11 +363,10 @@ class CollectiblesTable(QtWidgets.QMainWindow):
         self.fillTable()
 
 
-
 class PaymentsTable(QtWidgets.QMainWindow):
     def __init__(self):
         super(PaymentsTable, self).__init__()
-        loadUi('payments.ui', self)
+        loadUi('../UI File/payments.ui', self)
         self.configureWidgets()
 
     def configureWidgets(self):
@@ -411,7 +409,7 @@ class PaymentsTable(QtWidgets.QMainWindow):
 class DueTable(QtWidgets.QMainWindow):
     def __init__(self):
         super(DueTable, self).__init__()
-        loadUi('duedates.ui', self)
+        loadUi('../UI File/duedates.ui', self)
         self.configureWidgets()
 
     def configureWidgets(self):
