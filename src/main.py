@@ -111,14 +111,18 @@ class BalanceSheet(QtWidgets.QMainWindow):
 
         for activity in self.activities:
             self.tableWidget.setItem(row, 0, QTableWidgetItem(str(activity[0])))
-            self.tableWidget.setItem(row, 1, QTableWidgetItem(str(activity[1])))
-            self.tableWidget.setItem(row, 3, QTableWidgetItem(str(activity[2])))
-            self.tableWidget.setItem(row, 4, QTableWidgetItem(str(activity[3].strftime('%Y, %B %d'))))
-            self.tableWidget.setItem(row, 5, QTableWidgetItem(str(activity[4])))
             if isinstance(activity[1], str):
+                self.tableWidget.setItem(row, 1, QTableWidgetItem(str(activity[1])))
                 self.tableWidget.setItem(row, 2, QTableWidgetItem('+'))
+                self.tableWidget.setItem(row, 3, QTableWidgetItem(str(activity[2])))
+                self.tableWidget.setItem(row, 4, QTableWidgetItem(str(activity[3].strftime('%Y, %B %d'))))
+                self.tableWidget.setItem(row, 5, QTableWidgetItem(str(activity[4])))
             else:
+                self.tableWidget.setItem(row, 1, QTableWidgetItem('Payment'))
                 self.tableWidget.setItem(row, 2, QTableWidgetItem('-'))
+                self.tableWidget.setItem(row, 3, QTableWidgetItem(str(activity[1])))
+                self.tableWidget.setItem(row, 4, QTableWidgetItem(str(activity[2].strftime('%Y, %B %d'))))
+                self.tableWidget.setItem(row, 5, QTableWidgetItem(str(activity[3])))
             row += 1
 
     def homeClicked(self):

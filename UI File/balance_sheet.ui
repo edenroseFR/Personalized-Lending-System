@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>768</width>
-    <height>503</height>
+    <height>520</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Balance Sheet</string>
   </property>
   <property name="windowIcon">
    <iconset>

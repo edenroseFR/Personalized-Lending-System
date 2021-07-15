@@ -107,7 +107,7 @@ def paymentHistory(ID=None):
 
     res = cursor.fetchall()
     res = [list(i) for i in res]
-    res = [[i[0], 'Payment', i[1], i[2], i[3]] for i in res]
+    res = [[i[0],i[1], i[2], i[3]] for i in res]
     return res
 
 
