@@ -1,6 +1,7 @@
 import sys
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
+from PyQt5.QtCore import *
 from PyQt5.uic import loadUi
 from editBalance import EditBalance
 from editCreditor import EditCreditor
@@ -10,10 +11,36 @@ import messagebox
 import re
 
 
+class LoginWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(LoginWindow,self).__init__()
+        loadUi('../UI File/login.ui',self)
+        self.hint.hide()
+        self.configureWidgets()
+
+    def configureWidgets(self):
+        self.k = 'abc'
+        self.lineEdit.setFocus()
+        self.pushButton.clicked.connect(self.pushButtonClicked)
+
+    def pushButtonClicked(self):
+        if self.lineEdit.text() != self.k:
+            self.lineEdit.clear()
+            self.hint.show()
+        elif self.lineEdit.text() == self.k:
+            self.newWin = MainWindow()
+            self.newWin.show()
+            self.close()
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Return:
+            self.pushButtonClicked()
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow,self).__init__()
         loadUi('../UI File/mainwin.ui', self)
+        self.lineEdit.setFocus()
         self.listWidget.close()
         self.configureWidgets()
 
@@ -437,6 +464,6 @@ class DueTable(QtWidgets.QMainWindow):
 
 
 app = QApplication(sys.argv)
-win = MainWindow()
+win = LoginWindow()
 win.show()
 sys.exit(app.exec_())
