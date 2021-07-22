@@ -28,4 +28,4 @@ Personal Lending System (PLS) is a software solution, designed to help the Lende
 
 
 *To run the system in your PC, just go to:*
-`src/dist/main/main.exe`
+`src/dist/Application/main.exe`
