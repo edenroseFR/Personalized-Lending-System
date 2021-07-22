@@ -1,3 +1,4 @@
+import PyQt5
 from PyQt5 import QtWidgets
 from PyQt5.uic import loadUi
 import database
@@ -8,7 +9,7 @@ import messagebox
 class EditCreditor(QtWidgets.QMainWindow):
     def __init__(self, parent=None, creditorID=None):
         super(EditCreditor, self).__init__(parent)
-        loadUi('../UI File/edit_creditor.ui', self)
+        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/edit_creditor.ui', self)
         self.p = parent
         self.id = creditorID
         self.data = database.getCreditorInformation(self.id)

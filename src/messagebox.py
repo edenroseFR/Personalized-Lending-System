@@ -1,3 +1,4 @@
+import PyQt5
 from PyQt5.QtWidgets import QMessageBox
 
 def incompleteField(parent=None):
