@@ -337,9 +337,3 @@ def getDues():
     return due
 
 
-
-
-
-
-
-getDues()

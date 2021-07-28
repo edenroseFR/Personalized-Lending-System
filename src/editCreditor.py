@@ -10,9 +10,11 @@ class EditCreditor(QtWidgets.QMainWindow):
     def __init__(self, parent=None, creditorID=None):
         super(EditCreditor, self).__init__(parent)
         loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/edit_creditor.ui', self)
-        self.p = parent
-        self.id = creditorID
+
+        self.p    = parent
+        self.id   = creditorID
         self.data = database.getCreditorInformation(self.id)
+
         self.configureWidgets()
 
     def configureWidgets(self):
