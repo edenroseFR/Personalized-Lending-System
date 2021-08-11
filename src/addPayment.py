@@ -7,7 +7,7 @@ import messagebox
 class AddPayment(QtWidgets.QMainWindow):
     def __init__(self,  parent=None, creditorID=None):
         super(AddPayment,self).__init__(parent)
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/add_payment.ui', self)
+        loadUi('../UI File/add_payment.ui', self)
         self.p          = parent
         self.creditorID = creditorID
         self.configureWidgets()

@@ -7,7 +7,7 @@ import database
 class EditBalance(QtWidgets.QMainWindow):
     def __init__(self, parent=None, name=None, creditorID=None, creditID=None, mode=None):
         super(EditBalance, self).__init__(parent)
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/add_or_subtract.ui', self)
+        loadUi('../UI File/add_or_subtract.ui', self)
         self.p            = parent
         self.creditorName = name
         self.creditorID   = creditorID

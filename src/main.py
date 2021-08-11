@@ -15,7 +15,7 @@ import re
 class LoginWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(LoginWindow,self).__init__()
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/login.ui',self)
+        loadUi('../UI File/login.ui',self)
         self.hint.hide()
         self.configureWidgets()
 
@@ -40,7 +40,7 @@ class LoginWindow(QtWidgets.QMainWindow):
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow,self).__init__()
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/mainwin.ui', self)
+        loadUi('../UI File/mainwin.ui', self)
         self.lineEdit.setFocus()
         self.listWidget.close()
         self.configureWidgets()
@@ -104,7 +104,7 @@ class MainWindow(QtWidgets.QMainWindow):
 class BalanceSheet(QtWidgets.QMainWindow):
     def __init__(self, name=None, id=None):
         super(BalanceSheet,self).__init__()
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/balance_sheet.ui', self)
+        loadUi('../UI File/balance_sheet.ui', self)
 
         self.lendee         = name
         self.id             = id
@@ -196,7 +196,7 @@ class BalanceSheet(QtWidgets.QMainWindow):
 class NewCreditor(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/add_creditor.ui', self)
+        loadUi('../UI File/add_creditor.ui', self)
         self.configureWidgets()
 
     def configureWidgets(self):
@@ -255,7 +255,7 @@ class NewCreditor(QtWidgets.QMainWindow):
 class BorrowersTable(QtWidgets.QMainWindow):
     def __init__(self):
         super(BorrowersTable,self).__init__()
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/borrowers.ui', self)
+        loadUi('../UI File/borrowers.ui', self)
         self.configureWidgets()
 
     def configureWidgets(self):
@@ -329,7 +329,7 @@ class BorrowersTable(QtWidgets.QMainWindow):
 class CollectiblesTable(QtWidgets.QMainWindow):
     def __init__(self, data=None):
         super(CollectiblesTable, self).__init__()
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/collectibles.ui',self)
+        loadUi('../UI File/collectibles.ui',self)
         self.data = data
         self.configureWidgets()
 
@@ -410,7 +410,7 @@ class CollectiblesTable(QtWidgets.QMainWindow):
 class PaymentsTable(QtWidgets.QMainWindow):
     def __init__(self):
         super(PaymentsTable, self).__init__()
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/payments.ui', self)
+        loadUi('../UI File/payments.ui', self)
         self.configureWidgets()
 
     def configureWidgets(self):
@@ -453,7 +453,7 @@ class PaymentsTable(QtWidgets.QMainWindow):
 class DueTable(QtWidgets.QMainWindow):
     def __init__(self):
         super(DueTable, self).__init__()
-        loadUi('C:/Users/Admin/Documents/GitHub/Personalized-Lending-System/UI File/duedates.ui', self)
+        loadUi('../UI File/duedates.ui', self)
         self.configureWidgets()
 
     def configureWidgets(self):
