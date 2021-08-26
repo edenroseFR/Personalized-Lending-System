@@ -54,6 +54,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.collectibleButton.clicked.connect(self.collectiblePressed)
         self.paymentButton.clicked.connect(self.paymentPressed)
         self.dueButton.clicked.connect(self.duePressed)
+        self.emailButton.clicked.connect(self.gmailPressed)
 
     def fieldPressed(self):
         self.listWidget.clear()
@@ -99,6 +100,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.newWin = DueTable()
         self.newWin.show()
         self.close()
+
+    def gmailPressed(self):
+        self.newWin = GmailMessage(parent=self)
+        self.newWin.show()
 
 
 class BalanceSheet(QtWidgets.QMainWindow):
@@ -345,13 +350,14 @@ class CollectiblesTable(QtWidgets.QMainWindow):
         self.sortButton.clicked.connect(self.sortButtonClicked)
         self.searchButton.clicked.connect(self.searchButtonClicked)
         self.clearButton.clicked.connect(self.clearButtonClicked)
-        self.fillTable()
+        self.fillTable(self.data)
 
-    def fillTable(self):
+    def fillTable(self, data=None):
         self.tableWidget.setRowCount(0)
         self.tableWidget.setRowCount(database.allCreditors())
 
         row = 0
+        self.data = data
         for i in self.data:
             self.tableWidget.setItem(row, 0, QTableWidgetItem(str(i[0])))
             self.tableWidget.setItem(row, 1, QTableWidgetItem(str(i[1])))
@@ -474,6 +480,33 @@ class DueTable(QtWidgets.QMainWindow):
         self.newWin = MainWindow()
         self.newWin.show()
         self.close()
+
+
+class GmailMessage(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        super(GmailMessage, self).__init__(parent)
+        loadUi('../UI File/gmail_message.ui', self)
+        self.p = parent
+        self.configureWidgets()
+
+    def configureWidgets(self):
+        self.sendButton.clicked.connect(self.sendMessage)
+
+    def sendMessage(self):
+        from validEmail import validEmail
+        from sendmail import SendMail
+
+        sender = self.emailAddress.text()
+        content = self.content.toPlainText()
+
+        if validEmail(sender) and content.strip() != '':
+            try:
+                SendMail(sender, content)
+                messagebox.messageSent(self)
+            except:
+                messagebox.messageNotSent(self)
+
+
 
 
 app = QApplication(sys.argv)

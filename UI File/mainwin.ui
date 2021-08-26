@@ -430,6 +430,9 @@ border-radius: 10px;
      <property name="cursor">
       <cursorShape>PointingHandCursor</cursorShape>
      </property>
+     <property name="statusTip">
+      <string>Add new creditor</string>
+     </property>
      <property name="styleSheet">
       <string notr="true">#addNewUser{
 background-color: white;
@@ -474,6 +477,104 @@ background-color:rgb(255, 131, 89);
       <set>Qt::ImhNone</set>
      </property>
     </widget>
+    <widget class="QPushButton" name="emailButton">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>50</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="statusTip">
+      <string>Send mail</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#emailButton{
+background-color:TRANSPARENT;
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/email-2026367.png</normaloff>../img/email-2026367.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="contactLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#contactLabel{
+color: white;
+font: 10px;
+}</string>
+     </property>
+     <property name="text">
+      <string>Contact developer:</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="facebookButton">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>50</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="statusTip">
+      <string/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#facebookButton{
+background-color:TRANSPARENT;
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>../img/facebook.png</normaloff>../img/facebook.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
     <zorder>paymentButton</zorder>
     <zorder>creditorsButton</zorder>
     <zorder>collectibleButton</zorder>
@@ -486,6 +587,9 @@ background-color:rgb(255, 131, 89);
     <zorder>widget</zorder>
     <zorder>addNewUser</zorder>
     <zorder>listWidget</zorder>
+    <zorder>emailButton</zorder>
+    <zorder>contactLabel</zorder>
+    <zorder>facebookButton</zorder>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

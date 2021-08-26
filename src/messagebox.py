@@ -27,7 +27,8 @@ def confirmDeleteCreditor(parent=None, fullName=None):
         return True
 
 def creditorUpdated(parent=None):
-    return QMessageBox.information(parent, 'Update', 'Creditor Information updated successfully.')
+    return QMessageBox.information(parent, 'Update',
+                                   'Creditor Information updated successfully.')
 
 def emptyAmount(parent=None):
     return QMessageBox.warning(parent, 'Payment', 'Amount cannot be zero.')
@@ -36,7 +37,15 @@ def selectBorrower(parent=None):
     return QMessageBox.warning(parent, 'Edit', 'Please select a row first.')
 
 def cantDelete(parent=None):
-    return QMessageBox.information(parent, 'Delete', 'Oops! You cannot delete a creditor who has not fully paid yet')
+    return QMessageBox.information(parent, 'Delete',
+                                   'Oops! You cannot delete a creditor who has not fully paid yet')
 
 def noResultFound(parent=None):
     return QMessageBox.information(parent, 'Search Result', 'No result found.')
+
+def messageSent(parent=None):
+    return QMessageBox.information(parent, 'Lending Co.', 'Message sent.')
+
+def messageNotSent(parent=None):
+    return QMessageBox.information(parent, 'Lending Co.',
+                                   'Sending failed. Please check your internet connection.')
