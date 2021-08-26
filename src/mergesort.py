@@ -1,4 +1,4 @@
-# All credits belongs to w3resource.com
+# Code by w3resource.com
 # https://www.w3resource.com/python-exercises/data-structures-and-algorithms/python-search-and-sorting-exercise-8.php
 
 def mergeSort(nlist):
