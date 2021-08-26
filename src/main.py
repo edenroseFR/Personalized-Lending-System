@@ -493,6 +493,8 @@ class GmailMessage(QtWidgets.QMainWindow):
         self.sendButton.clicked.connect(self.sendMessage)
 
     def sendMessage(self):
+        self.sendButton.setText('Sending...')
+
         from validEmail import validEmail
         from sendmail import SendMail
 
@@ -505,6 +507,8 @@ class GmailMessage(QtWidgets.QMainWindow):
                 messagebox.messageSent(self)
             except:
                 messagebox.messageNotSent(self)
+
+        self.sendButton.setText('Send')
 
 
 

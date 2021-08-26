@@ -44,8 +44,9 @@ def noResultFound(parent=None):
     return QMessageBox.information(parent, 'Search Result', 'No result found.')
 
 def messageSent(parent=None):
-    return QMessageBox.information(parent, 'Lending Co.', 'Message sent.')
+    return QMessageBox.information(parent, 'Lending Co.',
+                                   'Message recieved!\nWe will reply via email.')
 
 def messageNotSent(parent=None):
     return QMessageBox.information(parent, 'Lending Co.',
-                                   'Sending failed. Please check your internet connection.')
+                                   'Sorry, we are unable to send your message.\nPlease check your internet connection.')
