@@ -50,3 +50,11 @@ def messageSent(parent=None):
 def messageNotSent(parent=None):
     return QMessageBox.information(parent, 'Lending Co.',
                                    'Sorry, we are unable to send your message.\nPlease check your internet connection.')
+
+def invalidEmail(parent=None):
+    return QMessageBox.information(parent, 'Lending Co.',
+                                   'Sending failed.\nYou entered an invalid email address.')
+
+def emptyContent(parent=None):
+    return QMessageBox.information(parent, 'Lending Co.',
+                                   'Sending failed.\nWe do not accept empty content.')

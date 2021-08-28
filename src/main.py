@@ -507,6 +507,10 @@ class GmailMessage(QtWidgets.QMainWindow):
                 messagebox.messageSent(self)
             except:
                 messagebox.messageNotSent(self)
+        elif not validEmail(sender):
+            messagebox.invalidEmail(self)
+        elif content.strip() == '':
+            messagebox.emptyContent(self)
 
         self.sendButton.setText('Send')
 
