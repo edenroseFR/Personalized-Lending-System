@@ -75,7 +75,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 
     def itemClicked(self, item):
-        selected    = [re.sub("[^0-9^.]", "", i) for i in self.updated_names if re.sub("[^A-Z a-z^.]", "", i) == item.text()]
+        selected = [re.sub("[^0-9^.]", "", i) for i in self.updated_names if re.sub("[^A-Z a-z^.]", "", i) == item.text()]
         self.newWin = BalanceSheet(name = item.text(), id = int(selected[0]))
         self.newWin.show()
         self.close()
@@ -111,11 +111,11 @@ class BalanceSheet(QtWidgets.QMainWindow):
         super(BalanceSheet,self).__init__()
         loadUi('../UI File/balance_sheet.ui', self)
 
-        self.lendee         = name
-        self.id             = id
+        self.lendee = name
+        self.id = id
         self.lendee_address = database.get_address(person=self.id)
-        self._balance       = int(database.getBalance(self.id))
-        self._balance       = '₱ {:,}'.format(self._balance)
+        self._balance = int(database.getBalance(self.id))
+        self._balance = '₱ {:,}'.format(self._balance)
 
         self.fillTable(self.id)
         self.configureWidgets()
@@ -133,7 +133,7 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.tableWidget.itemDoubleClicked.connect(self.doubleClicked)
 
     def doubleClicked(self):
-        id          = self.tableWidget.item(self.tableWidget.currentRow(),0).text()
+        id = self.tableWidget.item(self.tableWidget.currentRow(),0).text()
         self.newWin = EditBalance(parent=self, creditorID=self.id, creditID=id, mode='e')
         self.newWin.show()
 
@@ -177,12 +177,12 @@ class BalanceSheet(QtWidgets.QMainWindow):
 
 
     def pushButtonClicked(self):
-        self._item     = self.itemName.text()
-        self._qty      = int(self.quantity.cleanText())
-        self._price    = int(self.price.cleanText())
-        self._date     = self.date.date().toString("yyyy-MM-dd")
+        self._item = self.itemName.text()
+        self._qty = int(self.quantity.cleanText())
+        self._price = int(self.price.cleanText())
+        self._date = self.date.date().toString("yyyy-MM-dd")
         self._attendee = database.attendeeID(self.attendee.currentText())
-        self._amount   = int(self.amount.cleanText())
+        self._amount = int(self.amount.cleanText())
         self._interest = int(self.interest.cleanText())
 
         if self._item and self._qty and self._price:
@@ -210,19 +210,19 @@ class NewCreditor(QtWidgets.QMainWindow):
 
 
     def pushButtonClicked(self):
-        self.first        = self.first_name.text()
-        self.middle       = self.middle_name.text()
-        self.last         = self.last_name.text()
-        self.purok        = self.purok.text()
-        self.barangay     = self.barangay.text()
+        self.first = self.first_name.text()
+        self.middle = self.middle_name.text()
+        self.last = self.last_name.text()
+        self.purok = self.purok.text()
+        self.barangay = self.barangay.text()
         self.municipality = self.municipality.text()
-        self._amount      = int(self.amount.cleanText())
-        self._interest    = int(self.interest.cleanText())
-        self._itemName    = self.itemName.text()
-        self._quantity    = int(self.quantity.cleanText())
-        self._price       = int(self.price.cleanText())
-        self._attendee    = self.attendee.currentText()
-        self._date        = self.date.date().toString("yyyy-MM-dd")
+        self._amount = int(self.amount.cleanText())
+        self._interest = int(self.interest.cleanText())
+        self._itemName = self.itemName.text()
+        self._quantity = int(self.quantity.cleanText())
+        self._price = int(self.price.cleanText())
+        self._attendee = self.attendee.currentText()
+        self._date = self.date.date().toString("yyyy-MM-dd")
 
         if self.first and self.last and self.purok and self.barangay and self.municipality:
             if (self._amount != '0' and self._interest) or (self._itemName and self._quantity and self._price):
@@ -298,7 +298,7 @@ class BorrowersTable(QtWidgets.QMainWindow):
     def editButtonClicked(self):
         try:
             self.borrowerID = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
-            self.newWin     = EditCreditor(self, self.borrowerID)
+            self.newWin = EditCreditor(self, self.borrowerID)
             self.newWin.show()
         except:
             messagebox.selectBorrower(self)
@@ -319,7 +319,7 @@ class BorrowersTable(QtWidgets.QMainWindow):
 
 
     def searchButtonClicked(self):
-        self.input  = self.lineEdit.text()
+        self.input = self.lineEdit.text()
         self.result = database.getSearchResult(input=self.input, table='borrowers')
         if self.result != []:
             self.fillTable(data=self.result)
@@ -367,8 +367,8 @@ class CollectiblesTable(QtWidgets.QMainWindow):
             row += 1
 
     def item(self):
-        id          = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
-        name        = database.getFullName(id)
+        id = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
+        name = database.getFullName(id)
         self.newWin = BalanceSheet(name, id)
 
         self.newWin.show()
@@ -444,7 +444,7 @@ class PaymentsTable(QtWidgets.QMainWindow):
         self.close()
 
     def searchButtonClicked(self):
-        self.input  = self.lineEdit.text()
+        self.input = self.lineEdit.text()
         self.result = database.getSearchResult(self.input, 'payments')
         if self.result != []:
             self.fillTable(data=self.result)
