@@ -11,8 +11,8 @@ class EditCreditor(QtWidgets.QMainWindow):
         super(EditCreditor, self).__init__(parent)
         loadUi('../UI File/edit_creditor.ui', self)
 
-        self.p    = parent
-        self.id   = creditorID
+        self.p = parent
+        self.id = creditorID
         self.data = database.getCreditorInformation(self.id)
 
         self.configureWidgets()
