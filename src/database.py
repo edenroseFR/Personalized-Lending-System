@@ -155,6 +155,7 @@ def get_paidAmount(ID=None):
     except:
         return 0
 
+
 def allCreditorInfo():
     cursor.execute('''
     SELECT * FROM creditors
@@ -181,6 +182,7 @@ def creditors_balance():
     for i in res:
         i[2] = i[2] - get_paidAmount(i[0])
     return res
+
 
 def sortedCollectibles(a=None):
     from mergesort import mergeSort
@@ -210,12 +212,12 @@ def sortedCollectibles(a=None):
     return sortedData
 
 
-
 def getBalance(creditorID = None):
     borrowers = creditors_balance()
     for i in borrowers:
         if creditorID == i[0]:
             return i[2]
+
 
 def allCreditors():
     cursor.execute('''
@@ -224,6 +226,7 @@ def allCreditors():
 
     return len(cursor.fetchall())
 
+
 def getCreditorInformation(ID=None):
     cursor.execute('''
     SELECT * FROM creditors
@@ -231,6 +234,7 @@ def getCreditorInformation(ID=None):
     ''' %ID)
 
     return list(cursor.fetchone())
+
 
 def updateCreditorInformation(ID=None, newData=None):
     cursor.execute('''
@@ -242,6 +246,7 @@ def updateCreditorInformation(ID=None, newData=None):
 
     database.commit()
 
+
 def getFullName(id=None):
     cursor.execute('''
     SELECT first_name, middle_name, last_name FROM creditors
@@ -251,6 +256,7 @@ def getFullName(id=None):
     first, middle, last = cursor.fetchone()
     return first + ' ' + middle + ' ' + last
 
+
 def deleteCreditor(id=None):
     cursor.execute('''
     DELETE FROM creditors
@@ -258,6 +264,7 @@ def deleteCreditor(id=None):
     ''' % id)
 
     database.commit()
+
 
 def recordPayment(amount=None, date=None, creditorID=None, attendeeID=None):
     cursor.execute('''
@@ -312,6 +319,7 @@ def payments():
     res = [[i[0] + ' ' + i[1] + ' ' + i[2], i[3], i[4].strftime('%Y, %B %d'), i[5]] for i in res]
 
     return res
+
 
 def getDues():
     import datetime

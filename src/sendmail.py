@@ -1,6 +1,7 @@
 import smtplib
 from email.message import EmailMessage
 
+
 def SendMail(sender, content):
     # Compose a message
     msg = EmailMessage()
@@ -10,7 +11,7 @@ def SendMail(sender, content):
     msg.set_content(str(content + '\n From: ' + sender))
 
 
-    # Establish Connection
+    # Establish connection
     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
     server.login('edenrosefr@gmail.com', '@edenrose_0_FR')
 

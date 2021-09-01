@@ -1,4 +1,3 @@
-import PyQt5
 import sys
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QTableWidgetItem
@@ -37,6 +36,7 @@ class LoginWindow(QtWidgets.QMainWindow):
         if event.key() == Qt.Key_Return:
             self.pushButtonClicked()
 
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow,self).__init__()
@@ -68,18 +68,15 @@ class MainWindow(QtWidgets.QMainWindow):
 
             self.listWidget.itemClicked.connect(self.itemClicked)
 
-
     def addNewPressed(self):
         self.newWin = NewCreditor()
         self.newWin.show()
-
 
     def itemClicked(self, item):
         selected    = [re.sub("[^0-9^.]", "", i) for i in self.updated_names if re.sub("[^A-Z a-z^.]", "", i) == item.text()]
         self.newWin = BalanceSheet(name = item.text(), id = int(selected[0]))
         self.newWin.show()
         self.close()
-
 
     def creditorsPressed(self):
         self.newWin = BorrowersTable()
@@ -173,9 +170,6 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self.newWin = AddPayment(self, creditorID=self.id)
         self.newWin.show()
 
-
-
-
     def pushButtonClicked(self):
         self._item     = self.itemName.text()
         self._qty      = int(self.quantity.cleanText())
@@ -193,7 +187,6 @@ class BalanceSheet(QtWidgets.QMainWindow):
         if self._amount and self._interest:
             database.record_borrowed_money(self._amount, self._interest, self._date, self.creditorID, self._attendee)
 
-
         self.p.fillTable(self.creditorID)
         self.close()
 
@@ -207,7 +200,6 @@ class NewCreditor(QtWidgets.QMainWindow):
     def configureWidgets(self):
         self.attendee.addItems(database.getAttendees())
         self.pushButton.clicked.connect(self.pushButtonClicked)
-
 
     def pushButtonClicked(self):
         self.first        = self.first_name.text()
@@ -231,8 +223,6 @@ class NewCreditor(QtWidgets.QMainWindow):
                 messagebox.debtBoxIncomplete(self)
         else:
             messagebox.incompleteField(self)
-
-
 
     def recordCreditor(self):
         database.addCreditor(self.first,self.middle,self.last,self.purok,self.barangay,self.municipality)
@@ -317,7 +307,6 @@ class BorrowersTable(QtWidgets.QMainWindow):
         except:
             messagebox.selectBorrower(self)
 
-
     def searchButtonClicked(self):
         self.input  = self.lineEdit.text()
         self.result = database.getSearchResult(input=self.input, table='borrowers')
@@ -367,8 +356,8 @@ class CollectiblesTable(QtWidgets.QMainWindow):
             row += 1
 
     def item(self):
-        id          = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
-        name        = database.getFullName(id)
+        id = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
+        name = database.getFullName(id)
         self.newWin = BalanceSheet(name, id)
 
         self.newWin.show()
@@ -390,7 +379,6 @@ class CollectiblesTable(QtWidgets.QMainWindow):
         self.addressButton.hide()
         self.sortedData = database.sortedCollectibles(a='amount')
         self.fillTable(data=self.sortedData)
-
 
     def addressButtonClicked(self):
         self.amountButton.hide()
@@ -513,8 +501,6 @@ class GmailMessage(QtWidgets.QMainWindow):
             messagebox.emptyContent(self)
 
         self.sendButton.setText('Send')
-
-
 
 
 app = QApplication(sys.argv)
