@@ -10,16 +10,13 @@ database = mysql.connect(
 cursor = database.cursor()
 
 def borrowers_name(query = 'SELECT id, first_name, middle_name, last_name from creditors'):
-
-    ''' This function will return all the borrowers' full_name in list structure '''
-
     cursor.execute(query)
     borrowers = cursor.fetchall()
     name_of_borrowers = []
 
     for i in borrowers:
-        name = str(list(i)[0])+ list(i)[1] + ' ' + list(i)[2] + ' ' + list(i)[3]
-        name_of_borrowers.append(name)
+        nameWithID = str(list(i)[0]) + list(i)[1] + ' ' + list(i)[2] + ' ' + list(i)[3]
+        name_of_borrowers.append(nameWithID)
 
     return name_of_borrowers
 
@@ -27,11 +24,12 @@ def borrowers_name(query = 'SELECT id, first_name, middle_name, last_name from c
 def searched_names(key=None):
     borrowers = borrowers_name()
     selected_borrowers = []
-    for i in borrowers:
-        if key.lower() in i.lower():
-            selected_borrowers.append(i)
+    for name in borrowers:
+        if key.lower() in name.lower():
+            selected_borrowers.append(name)
 
     return selected_borrowers
+
 
 def get_address(person=None):
     cursor.execute('SELECT purok FROM creditors WHERE id=%d' % person)
@@ -39,22 +37,27 @@ def get_address(person=None):
     purok = purok[0][0]
     return purok
 
+
 def addCreditor(first=None, middle=None, last=None, purok=None, barangay=None, municipality=None):
     cursor.execute('''
     INSERT INTO creditors (first_name, middle_name, last_name, purok, barangay, municipality)
     VALUES ('%s','%s','%s','%s','%s','%s')
-    ''' %(first,middle,last,purok,barangay,municipality))
+    '''
+    %(first,middle,last,purok,barangay,municipality))
 
     database.commit()
     return
+
 
 def lastInsertedID():
     cursor.execute('SELECT last_insert_id()')
     return int(cursor.fetchone()[0])
 
+
 def attendeeID(name=None):
     cursor.execute("SELECT id FROM attendees WHERE full_name = '%s'" % name)
-    return int(cursor.fetchone()[0])
+    attendee_id = int(cursor.fetchone()[0])
+    return attendee_id
 
 
 def getAttendees():
@@ -63,21 +66,25 @@ def getAttendees():
     attendees = [i[0] for i in attendees]
     return attendees
 
+
 def record_borrowed_money(amount=None, interest=None,
                           date=None, creditorID=None, attendeeID=None):
     cursor.execute('''
     INSERT INTO credits (name, quantity, price_or_amount, interest, date, creditor_id, attendee_id)
     VALUES ('cash', 1, %d,%d,'%s',%d,%d)
-    ''' %(amount,interest,date,creditorID,attendeeID))
+    '''
+    %(amount,interest,date,creditorID,attendeeID))
 
     database.commit()
+
 
 def record_borrowed_item(name=None, quantity=None, price_or_amount=None, date=None,
                          creditorID=None, attendeeID=None):
     cursor.execute('''
     INSERT INTO credits (name, quantity, price_or_amount, interest, date, creditor_id, attendee_id)
     VALUES ('%s',%d, %d,%d,'%s',%d,%d)
-    ''' %(name, quantity,price_or_amount,0,date,creditorID,attendeeID))
+    '''
+    %(name, quantity,price_or_amount,0,date,creditorID,attendeeID))
 
     database.commit()
 
@@ -92,9 +99,10 @@ def creditorHistory(ID=None):
 
     history = [list(i) for i in cursor.fetchall()]
     payments = paymentHistory(ID)
-    history = history+payments
+    history = history + payments
 
     return history
+
 
 def paymentHistory(ID=None):
     cursor.execute('''
@@ -105,11 +113,11 @@ def paymentHistory(ID=None):
     ORDER BY p.date ASC
     '''%ID)
 
-    res = cursor.fetchall()
-    res = [list(i) for i in res]
-    res = [[i[0],i[1], i[2], i[3]] for i in res]
-    return res
+    paymentMade = cursor.fetchall()
+    paymentMade = [list(i) for i in paymentMade]
+    paymentMade = [[i[0], i[1], i[2], i[3]] for i in paymentMade]
 
+    return paymentMade
 
 
 def getCreditInformation(creditID=None):
@@ -120,8 +128,13 @@ def getCreditInformation(creditID=None):
     WHERE c.id = %d
     ''' %creditID)
 
-    name, quantity, amount, interest, date, attendee= cursor.fetchone()
-    return {'name':name,'quantity':quantity,'amount':amount,'interest':interest,'date':date,'attendee':attendee}
+    name, quantity, amount, interest, date, attendee = cursor.fetchone()
+    return {'name' : name,
+            'quantity' : quantity,
+            'amount' : amount,
+            'interest' : interest,
+            'date' : date,
+            'attendee' : attendee}
 
 
 def updateCreditInfo(creditID=None,data=None):
@@ -129,7 +142,15 @@ def updateCreditInfo(creditID=None,data=None):
     UPDATE credits
     SET name='%s', quantity=%d, price_or_amount=%d, interest=%d, date='%s', attendee_id=%d
     WHERE id=%d
-    ''' %(data['name'], data['quantity'], data['amount'], data['interest'], data['date'], data['attendee'], creditID))
+    '''
+    %(data['name'],
+      data['quantity'],
+      data['amount'],
+      data['interest'],
+      data['date'],
+      data['attendee'],
+      creditID)
+    )
 
     database.commit()
 
@@ -137,7 +158,7 @@ def updateCreditInfo(creditID=None,data=None):
 def deleteCredit(creditID=None):
     cursor.execute('''
     DELETE FROM credits WHERE id=%d
-    '''% creditID)
+    ''' % creditID)
 
     database.commit()
 
@@ -146,12 +167,13 @@ def get_paidAmount(ID=None):
     cursor.execute('''
     SELECT TRIM(sum(amount))+0 FROM payment
     WHERE creditor_id = %d
-    '''%ID)
+    ''' % ID)
 
-    res = str(cursor.fetchone())
-    res = res[1:-2]
+    paidAmount = str(cursor.fetchone())
+    paidAmount = paidAmount[1:-2]
+
     try:
-        return float(res)
+        return float(paidAmount)
     except:
         return 0
 
@@ -161,9 +183,9 @@ def allCreditorInfo():
     SELECT * FROM creditors
     ''')
 
-    res = cursor.fetchall()
-    res = [[i[0], i[1] + ' ' + i[2] + ' ' + i[3], i[4], i[5], i[6]] for i in res]
-    return res
+    listOfLendersInATuple = cursor.fetchall()
+    listOfLendersInAList = [[i[0], i[1] + ' ' + i[2] + ' ' + i[3], i[4], i[5], i[6]] for i in listOfLendersInATuple]
+    return listOfLendersInAList
 
 
 def creditors_balance():
@@ -177,46 +199,49 @@ def creditors_balance():
     GROUP BY c.id
     ''')
 
-    res = cursor.fetchall()
-    res = [[i[0], i[1] + ' ' + i[2], float(i[3]), i[4]] for i in res]
-    for i in res:
-        i[2] = i[2] - get_paidAmount(i[0])
-    return res
+    listOfTuples = cursor.fetchall()
+    listOfListedInfo = [[i[0], i[1] + ' ' + i[2], float(i[3]), i[4]] for i in listOfTuples]
+    for creditorsBalance in listOfListedInfo:
+        creditorsBalance[2] = creditorsBalance[2] - get_paidAmount(creditorsBalance[0])
+
+    return listOfListedInfo
 
 
-def sortedCollectibles(a=None):
+def sortedCollectibles(type=None):
     from mergesort import mergeSort
 
     data = creditors_balance()
+    print(data)
     sortedData = []
-    if a =='amount':
+
+    if type == 'amount':
         amount = [i[2] for i in data]
         sortedAmount = mergeSort(amount)
 
         for amount in sortedAmount:
-            for person in data:
-                if amount == person[2]:
-                    sortedData.append(person)
-                    data.remove(person)
+            for CreditorInfo in data:
+                if amount == CreditorInfo[2]:
+                    sortedData.append(CreditorInfo)
+                    data.remove(CreditorInfo)
 
-    elif a == 'address':
+    elif type == 'address':
         address = [i[3] for i in data]
         sortedAddress = mergeSort(address)
 
         for address in sortedAddress:
-            for person in data:
-                if address == person[3]:
-                    sortedData.append(person)
-                    data.remove(person)
+            for CreditorInfo in data:
+                if address == CreditorInfo[3]:
+                    sortedData.append(CreditorInfo)
+                    data.remove(CreditorInfo)
 
     return sortedData
 
 
 def getBalance(creditorID = None):
     borrowers = creditors_balance()
-    for i in borrowers:
-        if creditorID == i[0]:
-            return i[2]
+    for borrower in borrowers:
+        if creditorID == borrower[0]:
+            return borrower[2]
 
 
 def allCreditors():
@@ -231,7 +256,7 @@ def getCreditorInformation(ID=None):
     cursor.execute('''
     SELECT * FROM creditors
     WHERE id = %d
-    ''' %ID)
+    ''' % ID)
 
     return list(cursor.fetchone())
 
@@ -241,8 +266,14 @@ def updateCreditorInformation(ID=None, newData=None):
     UPDATE creditors
     SET first_name = '%s', middle_name = '%s', last_name = '%s', purok = '%s', barangay = '%s', municipality = '%s'
     WHERE id = %d
-    ''' % (newData['first'], newData['middle'], newData['last'],
-           newData['purok'], newData['barangay'], newData['municipality'], ID))
+    ''' % (newData['first'],
+           newData['middle'],
+           newData['last'],
+           newData['purok'],
+           newData['barangay'],
+           newData['municipality'],
+           ID)
+    )
 
     database.commit()
 
@@ -251,7 +282,7 @@ def getFullName(id=None):
     cursor.execute('''
     SELECT first_name, middle_name, last_name FROM creditors
     WHERE id = %d
-    ''' %id)
+    ''' % id)
 
     first, middle, last = cursor.fetchone()
     return first + ' ' + middle + ' ' + last
@@ -276,35 +307,34 @@ def recordPayment(amount=None, date=None, creditorID=None, attendeeID=None):
 
 
 def getSearchResult(input=None, table=None):
-    inp = input.lower()
-    result = []
+    userInput = input.lower()
+    searchResult = []
 
     if table == 'collectible':
         data = creditors_balance()
         for person in data:
-            j = [person[1].lower(), person[3].lower()]
-            for item in j:
-                if inp in item:
-                    result.append(person)
-
+            formattedCreditorsInformation = [person[1].lower(), person[3].lower()]
+            for item in formattedCreditorsInformation:
+                if userInput in item:
+                    searchResult.append(person)
 
     elif table == 'borrowers':
         data = allCreditorInfo()
         for person in data:
-            j = [person[1].lower(), person[2].lower(), person[3].lower(), person[4].lower()]
-            for item in j:
-                if inp in item:
-                    result.append(person)
+            formattedCreditorsInformation = [person[1].lower(), person[2].lower(), person[3].lower(), person[4].lower()]
+            for item in formattedCreditorsInformation:
+                if userInput in item:
+                    searchResult.append(person)
 
     elif table == 'payments':
         data = payments()
         for person in data:
-            j = [person[0].lower(), person[3].lower()]
-            for item in j:
-                if inp in item:
-                    result.append(person)
+            formattedCreditorsInformation = [person[0].lower(), person[3].lower()]
+            for item in formattedCreditorsInformation:
+                if userInput in item:
+                    searchResult.append(person)
 
-    return result
+    return searchResult
 
 
 def payments():
@@ -315,10 +345,10 @@ def payments():
     JOIN attendees a on p.attendee_id = a.id
     ''')
 
-    res = cursor.fetchall()
-    res = [[i[0] + ' ' + i[1] + ' ' + i[2], i[3], i[4].strftime('%Y, %B %d'), i[5]] for i in res]
+    recordedPayments = cursor.fetchall()
+    recordedPayments = [[i[0] + ' ' + i[1] + ' ' + i[2], i[3], i[4].strftime('%Y, %B %d'), i[5]] for i in recordedPayments]
 
-    return res
+    return recordedPayments
 
 
 def getDues():
@@ -331,17 +361,17 @@ def getDues():
     ON i.creditor_id = c.id
     ''')
 
-    res = cursor.fetchall()
-    res = [list(i) for i in res]
-    due = []
+    dueCredits = cursor.fetchall()
+    dueCredits = [list(i) for i in dueCredits]
     dateToday = datetime.date.today()
+    dues = []
 
-    for i in res:
+    for i in dueCredits:
         daysPassed = dateToday - i[4]
         daysPassed = int(daysPassed.days)
         if (daysPassed) == 30:
-            due.append(i)
+            dues.append(i)
 
-    return due
+    return dues
 
 

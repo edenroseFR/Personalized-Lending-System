@@ -7,27 +7,28 @@ class AddPayment(QtWidgets.QMainWindow):
     def __init__(self,  parent=None, creditorID=None):
         super(AddPayment,self).__init__(parent)
         loadUi('../UI File/add_payment.ui', self)
-        self.p = parent
+        self.parent = parent
         self.creditorID = creditorID
+
         self.configureWidgets()
 
     def configureWidgets(self):
-        self.pushButton.clicked.connect(self.pushButtonClicked)
+        self.recordButton.clicked.connect(self.tryRecordingPayment)
         self.attendee.addItems(database.getAttendees())
 
-    def pushButtonClicked(self):
+    def tryRecordingPayment(self):
         self.attendeeID = database.attendeeID(self.attendee.currentText())
-        self._amount = int(self.amount.cleanText())
-        self._date = self.date.date().toString("yyyy-MM-dd")
+        self.paidAmount = int(self.amount.cleanText())
+        self.dateGiven = self.date.date().toString("yyyy-MM-dd")
 
-        if self._amount != 0:
-            database.recordPayment(amount = self._amount,
-                                   date = self._date,
+        if self.paidAmount != 0:
+            database.recordPayment(amount = self.paidAmount,
+                                   date = self.dateGiven,
                                    creditorID = self.creditorID,
                                    attendeeID = self.attendeeID)
 
         else:
             messagebox.emptyAmount()
 
-        self.p.fillTable(self.creditorID)
+        self.parent.fillTable(self.creditorID)
         self.close()
