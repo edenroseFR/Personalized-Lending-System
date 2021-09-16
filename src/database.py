@@ -183,9 +183,9 @@ def allCreditorInfo():
     SELECT * FROM creditors
     ''')
 
-    listOfLendersInATuple = cursor.fetchall()
-    listOfLendersInAList = [[i[0], i[1] + ' ' + i[2] + ' ' + i[3], i[4], i[5], i[6]] for i in listOfLendersInATuple]
-    return listOfLendersInAList
+    listOfCreditorsInATuple = cursor.fetchall()
+    listOfCreditorsInAList = [[i[0], i[1] + ' ' + i[2] + ' ' + i[3], i[4], i[5], i[6]] for i in listOfCreditorsInATuple]
+    return listOfCreditorsInAList
 
 
 def creditors_balance():
