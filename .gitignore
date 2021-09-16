@@ -1,8 +1,6 @@
-__pychache__/
-build/
-dist/
-.idea/
-docs/
-
 *.html
 *.TeX
+
+__pycache__/
+build/
+dist/
