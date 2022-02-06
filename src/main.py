@@ -62,9 +62,15 @@ class MainWindow(QtWidgets.QMainWindow):
         if self.lineEdit.hasFocus():
             characters = self.lineEdit.text()
             self.updated_names = database.searched_names(key=characters)
+            updated_names_length = len(self.updated_names)
             names = [re.sub("[^A-Z a-z^.]", "", i) for i in self.updated_names]
             self.listWidget.addItems(names)
-            self.listWidget.setGeometry(QtCore.QRect(160,250,451,self.listWidget_height*(len(self.updated_names))))
+            self.listWidget.setGeometry(
+                QtCore.QRect(
+                    160,250,451,
+                    self.listWidget_height*(updated_names_length)
+                )
+            )
             self.listWidget.show()
 
             self.listWidget.itemClicked.connect(self.itemClicked)
@@ -74,7 +80,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.newWin.show()
 
     def itemClicked(self, item):
-        selected = [re.sub("[^0-9^.]", "", i) for i in self.updated_names if re.sub("[^A-Z a-z^.]", "", i) == item.text()]
+        selected = []
+        for name in self.updated_names:
+            if re.sub("[^A-Z a-z^.]", "", name) == item.text():
+                selected.append(re.sub("[^0-9^.]", "", name))
         self.newWin = BalanceSheet(name = item.text(), id = int(selected[0]))
         self.newWin.show()
         self.close()
@@ -181,12 +190,22 @@ class BalanceSheet(QtWidgets.QMainWindow):
         self._interest = int(self.interest.cleanText())
 
         if self._item and self._qty and self._price:
-            print(self._item,self._qty,self._price,self._date,self.creditorID,self._attendee)
-            database.record_borrowed_item(self._item, self._qty, self._price, self._date,
-                                          self.creditorID,self._attendee)
+            database.record_borrowed_item(
+                self._item, 
+                self._qty, 
+                self._price, 
+                self._date,
+                self.creditorID,self._attendee
+            )
 
         if self._amount and self._interest:
-            database.record_borrowed_money(self._amount, self._interest, self._date, self.creditorID, self._attendee)
+            database.record_borrowed_money(
+                self._amount, 
+                self._interest, 
+                self._date, 
+                self.creditorID, 
+                self._attendee
+            )
 
         self.p.fillTable(self.creditorID)
         self.close()
@@ -218,7 +237,8 @@ class NewCreditor(QtWidgets.QMainWindow):
         self._date = self.date.date().toString("yyyy-MM-dd")
 
         if self.first and self.last and self.purok and self.barangay and self.municipality:
-            if (self._amount != '0' and self._interest) or (self._itemName and self._quantity and self._price):
+            if (self._amount != '0' and self._interest) \
+                or (self._itemName and self._quantity and self._price):
                 self.recordCreditor()
             else:
                 messagebox.debtBoxIncomplete(self)
@@ -226,24 +246,35 @@ class NewCreditor(QtWidgets.QMainWindow):
             messagebox.incompleteField(self)
 
     def recordCreditor(self):
-        database.addCreditor(self.first,self.middle,self.last,self.purok,self.barangay,self.municipality)
+        database.addCreditor(
+            self.first,
+            self.middle,
+            self.last,
+            self.purok,
+            self.barangay,
+            self.municipality
+        )
         self.recordCredit()
 
     def recordCredit(self):
         if self._amount != '0' and self._interest:
-            database.record_borrowed_money(self._amount,
-                                           self._interest,
-                                           self._date,
-                                           database.lastInsertedID(),
-                                           database.attendeeID(self._attendee))
+            database.record_borrowed_money(
+                self._amount,
+                self._interest,
+                self._date,
+                database.lastInsertedID(),
+                database.attendeeID(self._attendee)
+            )
 
         if self._itemName and self._quantity and self._price:
-            database.record_borrowed_item(self._itemName,
-                                          self._quantity,
-                                          self._price,
-                                          self._date,
-                                          database.lastInsertedID(),
-                                          database.attendeeID(self._attendee))
+            database.record_borrowed_item(
+                self._itemName,
+                self._quantity,
+                self._price,
+                self._date,
+                database.lastInsertedID(),
+                database.attendeeID(self._attendee)
+            )
 
         self.close()
 
@@ -298,13 +329,11 @@ class BorrowersTable(QtWidgets.QMainWindow):
         try:
             self.borrowerID = int(self.tableWidget.item(self.tableWidget.currentRow(), 0).text())
             if messagebox.confirmDelete(self):
-
                 try:
                     database.deleteCreditor(self.borrowerID)
                     self.fillTable()
                 except:
                     messagebox.cantDelete(self)
-
         except:
             messagebox.selectBorrower(self)
 
