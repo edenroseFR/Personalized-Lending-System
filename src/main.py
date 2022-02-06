@@ -9,6 +9,7 @@ from addPayment import AddPayment
 import database
 import messagebox
 import re
+from utils import SendMail, validEmail
 
 
 class LoginWindow(QtWidgets.QMainWindow):
@@ -482,9 +483,6 @@ class GmailMessage(QtWidgets.QMainWindow):
 
     def sendMessage(self):
         self.sendButton.setText('Sending...')
-
-        from validEmail import validEmail
-        from sendmail import SendMail
 
         sender = self.emailAddress.text()
         content = self.content.toPlainText()

@@ -1,4 +1,5 @@
 import mysql.connector as mysql
+from utils import mergeSort
 
 database = mysql.connect(
     host='localhost',
@@ -208,8 +209,6 @@ def creditors_balance():
 
 
 def sortedCollectibles(type=None):
-    from mergesort import mergeSort
-
     data = creditors_balance()
     print(data)
     sortedData = []
