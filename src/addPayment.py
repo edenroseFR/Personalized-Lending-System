@@ -22,10 +22,12 @@ class AddPayment(QtWidgets.QMainWindow):
         self.dateGiven = self.date.date().toString("yyyy-MM-dd")
 
         if self.paidAmount != 0:
-            database.recordPayment(amount = self.paidAmount,
-                                   date = self.dateGiven,
-                                   creditorID = self.creditorID,
-                                   attendeeID = self.attendeeID)
+            database.recordPayment(
+                amount = self.paidAmount,
+                date = self.dateGiven,
+                creditorID = self.creditorID,
+                attendeeID = self.attendeeID
+            )
 
         else:
             messagebox.emptyAmount()
