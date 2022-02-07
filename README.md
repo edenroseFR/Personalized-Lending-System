@@ -1,6 +1,6 @@
 # Personalized-Lending-System
 
-![Screenshot](https://github.com/edenroseFR/Personalized-Lending-System/blob/main/screenshot.PNG)
+![screenshot](https://user-images.githubusercontent.com/65489091/152856801-cf419049-003f-483e-a8c3-42115eab137a.PNG)
 
 ***Description***
 
